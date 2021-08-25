@@ -1,11 +1,14 @@
+import Auth from '../auth/Auth';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        hello world
+      <header>
+        <h2>index</h2>
       </header>
+
+      <Auth/>
     </div>
   );
 }
