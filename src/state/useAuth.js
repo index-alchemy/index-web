@@ -12,8 +12,14 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    // check localstorage to see if user is signed in already
+    // check localstorage to get the user_id of the last logged in user
+    // if it exists, check the cookies to make sure it's valid
+    // if that's valid, then set the current user
   }, []);
+
+  useEffect(() => {
+    // when a new currentUser is set, save their user id to localstorage
+  }, [currentUser]);
 
   useEffect(() => {
     if (userLogin) {
@@ -34,7 +40,6 @@ const useAuth = () => {
         .finally(() => setLoading(false))
         .catch(err => console.log(err))
       ;
-      console.log(currentUser);
     }
   }, [userSignup]);
 
