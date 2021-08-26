@@ -1,3 +1,25 @@
 .App {
+  display: grid;
+  justify-content: center;
   text-align: center;
+}
+
+.Auth {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  width: 20rem;
+  padding: 1rem;
+  box-shadow: 0 0 0.25rem #0003;
+  border-radius: 0.5rem;
+}
+
+.Auth .auth-toggle {
+  cursor: pointer;
+  color: #46a;
+}
+
+.Auth button {
+  margin-top: 1rem;
 }
