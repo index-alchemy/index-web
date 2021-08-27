@@ -35,10 +35,10 @@ const useAuth = () => {
         .then(setCurrentUser)
         .finally(() => {
           setLoading(false)
-          if(currentUser) redirect();
+          if (currentUser) redirect();
         })
         .catch(err => console.log(err))
-        ;
+      ;
     }
   }, [userLogin]);
 
@@ -52,7 +52,7 @@ const useAuth = () => {
           if (currentUser) redirect()
         })
         .catch(err => console.log(err))
-        ;
+      ;
     }
   }, [userSignup]);
 
