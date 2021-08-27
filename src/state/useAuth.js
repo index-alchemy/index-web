@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { signUp, logIn } from '../services/indexAPI.js';
+import { signUp, logIn } from '../services/indexAuthAPI.js';
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ const useAuth = () => {
         .then(setCurrentUser)
         .finally(() => setLoading(false))
         .catch(err => console.log(err))
-      ;
+        ;
     }
   }, [userLogin]);
 
@@ -36,10 +36,10 @@ const useAuth = () => {
     if (userSignup) {
       setLoading(true);
       signUp(userSignup)
-        .then(setCurrentUser)
+        .then(res => setCurrentUser(res))
         .finally(() => setLoading(false))
         .catch(err => console.log(err))
-      ;
+        ;
     }
   }, [userSignup]);
 
