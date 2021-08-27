@@ -3,7 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Landing from '../landing/Landing.jsx';
 import SprintList from '../home/SprintList';
-
+import SprintPage from '../sprint/SprintPage';
+import PitchPage from '../pitch/PitchPage';
 
 export default function App() {
   return (
@@ -12,8 +13,8 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={SprintList} />
-        {/* <Route exact path="/sprints/:id" component={Sprint} /> */}
-        {/* <Route exact path="sprints/sprint_id/:id" component={Pitch} /> */}
+        <Route exact path="/sprints/:id" component={SprintPage} />
+        <Route exact path="/pitches/:id" component={PitchPage} />
         <Redirect to="/" />
       </Switch>
     </>
