@@ -6,4 +6,32 @@ export const fetchSprints = async () => {
   })
     .then(res => res.json())
     .catch(err => console.log(err))
-} 
+};
+
+export const fetchSprint = async id => {
+  return await fetch(`${API}/sprints/${id}`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};
+
+export const fetchPitchesBySprint = async sprintId => {
+  return await fetch(`${API}/pitches/sprint/${sprintId}`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};
+
+export const fetchPitch = async id => {
+  return await fetch(`${API}/pitches/${id}`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};
+
+export const fetchCommentsByPitch = async pitchId => {
+  return await fetch(`${API}/comments/pitch/${pitchId}`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};
