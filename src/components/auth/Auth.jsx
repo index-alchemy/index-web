@@ -1,5 +1,6 @@
 import React from 'react';
 import useAuth from '../../state/useAuth.js';
+import cohorts from '../../cohorts.json';
 
 const Auth = () => {
 
@@ -29,14 +30,10 @@ const Auth = () => {
       <input name="email" placeholder="email" type="text"/>
       {!accountExists && <>
         <input name="name" placeholder="name" type="text"/>
-        <select defaultValue="21-03mar" name="cohort">
-          <option value="21-11nov">November 2021</option>
-          <option value="21-09sep">September 2021</option>
-          <option value="21-08aug">August 2021</option>
-          <option value="21-06jun">June 2021</option>
-          <option value="21-04apr">April 2021</option>
-          <option value="21-03mar">March 2021</option>
-          <option value="21-01jan">January 2021</option>
+        <select defaultValue="21-03" name="cohort">
+          {cohorts.map(cohort => 
+            <option key={cohort.code} value={cohort.code}>{cohort.name}</option>)
+          }
         </select>
       </>}
       <input name="password" placeholder="password" type="password"/>
