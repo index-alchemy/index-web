@@ -16,7 +16,7 @@ export const fetchSprint = async id => {
 };
 
 export const fetchPitchesBySprint = async sprintId => {
-  return await fetch(`${API}/pitches/sprint/${sprintId}`, { credentials: 'include' })
+  return await fetch(`${API}/sprints/${sprintId}/pitches`, { credentials: 'include' })
     .then(res => res.json())
     .catch(err => console.log(err))
   ;
@@ -30,7 +30,7 @@ export const fetchPitch = async id => {
 };
 
 export const fetchCommentsByPitch = async pitchId => {
-  return await fetch(`${API}/comments/pitch/${pitchId}`, { credentials: 'include' })
+  return await fetch(`${API}/pitches/${pitchId}/comments`, { credentials: 'include' })
     .then(res => res.json())
     .catch(err => console.log(err))
   ;

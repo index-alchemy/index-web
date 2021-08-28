@@ -1,7 +1,7 @@
 const API = 'http://localhost:7890/api/v1';
 
 const signUp = async credentials => {
-  return await fetch(`${API}/auth/signup`, {
+  return await fetch(`${API}/users/auth/signup`, {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -16,7 +16,7 @@ const signUp = async credentials => {
 };
 
 const logIn = async credentials => {
-  return await fetch(`${API}/auth/login`, {
+  return await fetch(`${API}/users/auth/login`, {
     method: 'POST',
     mode: 'cors',
     headers: {
