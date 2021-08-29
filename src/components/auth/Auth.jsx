@@ -1,10 +1,12 @@
 import React from 'react';
-import useAuth from '../../state/useAuth.js';
 import cohorts from '../../cohorts.json';
+import { useAuthActions, useSession } from '../../state/SessionProvider';
 
 const Auth = () => {
 
-  const { loading, currentUser, setUserLogin, setUserSignup, logOut } = useAuth();
+  const { loading, session } = useSession();
+  const { signUp, logIn, logOut } = useAuthActions();
+
   const [accountExists, setAccountExists] = React.useState(true);
 
   const handleSubmit = e => {
@@ -13,7 +15,7 @@ const Auth = () => {
     const { email, password, name, cohort } = e.target;
 
     // decide whether to sign up or log in
-    const action = accountExists ? setUserLogin : setUserSignup;
+    const action = accountExists ? logIn : signUp;
     action({ 
       email: email.value, 
       name: name && name.value,
@@ -42,7 +44,7 @@ const Auth = () => {
         ? <span>...</span>
         : <>
           <button type="submit">{accountExists ? 'Log In!' : 'Sign Up :)'}</button>
-          {Boolean(currentUser) && <button onClick={logOut}>Log Out</button>}
+          {Boolean(session) && <button onClick={logOut}>Log Out</button>}
         </>
       }
       <span 
@@ -51,7 +53,7 @@ const Auth = () => {
       >{accountExists ? 'Need' : 'Already have'} an account?</span>
     </form>
 
-    {currentUser && <span>Hello, {currentUser.name}</span>}
+    {session && <span>Hello, {session.name}</span>}
   </>;
 };
 
