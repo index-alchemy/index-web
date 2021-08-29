@@ -1,37 +1,26 @@
 const API = 'http://localhost:7890/api/v1';
 
-export const fetchSprints = async () => {
-  return await fetch(API + '/sprints', { 
-    credentials: 'include'
-  })
+const GET = async route => {
+  return await fetch(`${API}${route}`, { credentials: 'include' })
     .then(res => res.json())
-    .catch(err => console.log(err))
-};
-
-export const fetchSprint = async id => {
-  return await fetch(`${API}/sprints/${id}`, { credentials: 'include' })
-    .then(res => res.json())
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
   ;
 };
 
-export const fetchPitchesBySprint = async sprintId => {
-  return await fetch(`${API}/sprints/${sprintId}/pitches`, { credentials: 'include' })
-    .then(res => res.json())
-    .catch(err => console.log(err))
-  ;
-};
+const fetchSprints = async () => await GET('/sprints');
 
-export const fetchPitch = async id => {
-  return await fetch(`${API}/pitches/${id}`, { credentials: 'include' })
-    .then(res => res.json())
-    .catch(err => console.log(err))
-  ;
-};
+const fetchSprint = async id => await GET(`/sprints/${id}`);
 
-export const fetchCommentsByPitch = async pitchId => {
-  return await fetch(`${API}/pitches/${pitchId}/comments`, { credentials: 'include' })
-    .then(res => res.json())
-    .catch(err => console.log(err))
-  ;
+const fetchPitchesBySprint = async id => await GET(`/sprints/${id}/pitches`);
+
+const fetchPitch = async id => await GET(`/pitches/${id}`);
+
+const fetchCommentsByPitch = async id => await GET(`/pitches/${id}/comments`);
+
+export { 
+  fetchSprints, 
+  fetchSprint, 
+  fetchPitchesBySprint, 
+  fetchPitch, 
+  fetchCommentsByPitch 
 };
