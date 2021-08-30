@@ -47,7 +47,7 @@ export default function SprintList() {
   const { cohorts } = useSprints();
 
   const generateCohorts = cohorts => {
-    return Object.keys(cohorts).map(cohort => <div className={classes.wildDiv} key={cohort}>
+    return Object.keys(cohorts).reverse().map(cohort => <div className={classes.wildDiv} key={cohort}>
       <div className={classes.cohortSprints}>
         <h3 className={classes.cohort}>{cohort}</h3>
         <ul className={classes.sprintList}>
