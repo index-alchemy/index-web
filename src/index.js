@@ -3,13 +3,15 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './components/app/App.jsx';
-
+import { SessionProvider } from './state/SessionProvider';
 
 render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <React.StrictMode>
+    <Router>
+      <SessionProvider>
+          <App />
+      </SessionProvider>
+    </Router>
+  </React.StrictMode>,
   document.getElementById('root')
 );
