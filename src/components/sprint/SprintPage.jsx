@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSprint } from '../../state/useSprint';
 import PitchItem from './PitchItem';
+import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 
 const SprintPage = () => {
@@ -41,9 +42,12 @@ const SprintPage = () => {
               <PitchItem key={pitch.id} pitch={pitch} />
             )}
           </ul>
+
+          <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
         </>
       }
     </div>
+
   </>;
 };
 
