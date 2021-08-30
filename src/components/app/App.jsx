@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Header from '../header/Header';
 import Landing from '../landing/Landing.jsx';
 import SprintList from '../home/SprintList';
 import SprintPage from '../sprint/SprintPage';
@@ -12,7 +13,7 @@ import Search from '../../search/Search';
 export default function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={SprintList} />
