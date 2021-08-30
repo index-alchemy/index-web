@@ -1,16 +1,22 @@
-import Auth from '../auth/Auth';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Landing from '../landing/Landing.jsx';
+import SprintList from '../home/SprintList';
+import SprintPage from '../sprint/SprintPage';
+import PitchPage from '../pitch/PitchPage';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header>
-        <h2>index</h2>
-      </header>
-
-      <Auth/>
-    </div>
+    <>
+      {/* <Header /> */}
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/home" component={SprintList} />
+        <Route exact path="/sprints/:id" component={SprintPage} />
+        <Route exact path="/pitches/:id" component={PitchPage} />
+        <Redirect to="/" />
+      </Switch>
+    </>
   );
 }
-
-export default App;

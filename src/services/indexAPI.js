@@ -1,33 +1,37 @@
 const API = 'http://localhost:7890/api/v1';
 
-const signUp = async credentials => {
-  return await fetch(`${API}/auth/signup`, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include',
-    body: JSON.stringify(credentials)
+export const fetchSprints = async () => {
+  return await fetch(API + '/sprints', { 
+    credentials: 'include'
   })
-    .then(resp => resp.json())
+    .then(res => res.json())
+    .catch(err => console.log(err))
+};
+
+export const fetchSprint = async id => {
+  return await fetch(`${API}/sprints/${id}`, { credentials: 'include' })
+    .then(res => res.json())
     .catch(err => console.log(err))
   ;
 };
 
-const logIn = async credentials => {
-  return await fetch(`${API}/auth/login`, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include',
-    body: JSON.stringify(credentials)
-  })
-    .then(resp => resp.json())
+export const fetchPitchesBySprint = async sprintId => {
+  return await fetch(`${API}/sprints/${sprintId}/pitches`, { credentials: 'include' })
+    .then(res => res.json())
     .catch(err => console.log(err))
   ;
-}
+};
 
-export { signUp, logIn };
+export const fetchPitch = async id => {
+  return await fetch(`${API}/pitches/${id}`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};
+
+export const fetchCommentsByPitch = async pitchId => {
+  return await fetch(`${API}/pitches/${pitchId}/comments`, { credentials: 'include' })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+  ;
+};

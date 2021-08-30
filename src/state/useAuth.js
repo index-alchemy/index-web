@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { signUp, logIn } from '../services/indexAPI.js';
+import { useHistory } from 'react-router-dom';
+import { signUp, logIn } from '../services/indexAuthAPI.js';
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [userLogin, setUserLogin] = useState();
   const [userSignup, setUserSignup] = useState();
+  const history = useHistory();
 
   const logOut = () => {
     setCurrentUser(null);
@@ -17,16 +19,24 @@ const useAuth = () => {
     // if that's valid, then set the current user
   }, []);
 
-  useEffect(() => {
-    // when a new currentUser is set, save their user id to localstorage
-  }, [currentUser]);
+  const redirect = () => {
+    history.push('/home');
+  }
+
+  // useEffect(() => {
+  //   // when a new currentUser is set, save their user id to localstorage
+  //   if (currentUser) history.push('/home');
+  // }, [currentUser, history]);
 
   useEffect(() => {
     if (userLogin) {
       setLoading(true);
       logIn(userLogin)
         .then(setCurrentUser)
-        .finally(() => setLoading(false))
+        .finally(() => {
+          setLoading(false)
+          if (currentUser) redirect();
+        })
         .catch(err => console.log(err))
       ;
     }
@@ -36,8 +46,11 @@ const useAuth = () => {
     if (userSignup) {
       setLoading(true);
       signUp(userSignup)
-        .then(setCurrentUser)
-        .finally(() => setLoading(false))
+        .then(res => setCurrentUser(res))
+        .finally(() => {
+          setLoading(false)
+          if (currentUser) redirect()
+        })
         .catch(err => console.log(err))
       ;
     }
