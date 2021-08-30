@@ -70,7 +70,7 @@ const Auth = () => {
   return <div className={classes.authPage}>
     <h1>Index 📚</h1>
     <form 
-      className="Auth"
+      className={classes.authForm}
       onSubmit={handleSubmit}
     >
       <input name="email" placeholder="email" type="text"/>
