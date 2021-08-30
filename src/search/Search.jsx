@@ -1,8 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react';
-
 import algoliasearch from 'algoliasearch';
+import { Link } from 'react-router-dom';
 import { InstantSearch, SearchBox, Hits, connectHighlight, Pagination } from 'react-instantsearch-dom';
+import './Search.css';
+
 
 const searchClient = algoliasearch('N82H923VC5', 'cfb98a5ccb9ee9a4c9ebe8f6892ae575');
 
@@ -31,17 +33,21 @@ const Hit = ({ hit }) => (
 );
 
 const Search = () => (
-  <InstantSearch searchClient={searchClient} indexName="index_pitches">
-    <SearchBox />
-    <Hits hitComponent={Hit} />
-    <Pagination
-      showFirst={true}
-      showLast={true}
-      showPrevious={true}
-      showNext={true}
-      totalPages={18}
-    />
-  </InstantSearch>
+  <div className="searchTool">
+    <Link to="/home">Return</Link>
+    <InstantSearch searchClient={searchClient} indexName="index_pitches">
+      <SearchBox />
+      <Hits hitComponent={Hit} />
+      <Pagination
+        showFirst={true}
+        showLast={true}
+        showPrevious={true}
+        showNext={true}
+        totalPages={18}
+      />
+
+    </InstantSearch>
+  </div>
 );
 
 export default Search;
