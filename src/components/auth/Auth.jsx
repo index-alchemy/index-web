@@ -10,7 +10,7 @@ const Auth = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh',
+      height: '90vh',
       color: '#1F1F1F'
     },
     authForm: {
@@ -86,7 +86,7 @@ const Auth = () => {
         {loading
           ? <span>...</span>
           : <>
-            <button className={classes.authButton} type="submit">{accountExists ? 'Log In!' : 'Sign Up :)'}</button>
+            <button className={classes.authButton} type="submit">{accountExists ? 'Log In' : 'Sign Up'}</button>
             {Boolean(currentUser) && <button className={classes.authButton} onClick={logOut}>Log Out</button>}
           </>
         }
