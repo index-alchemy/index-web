@@ -11,14 +11,14 @@ export default function SprintList() {
     return Object.keys(cohorts).map(cohort => <div key={cohort}>
       <h3>{cohort}</h3>
       <ul>
-        {cohorts[cohort].map(sprint => 
+        {cohorts[cohort].map(sprint =>
           <SprintItem key={sprint.id} sprint={sprint} />)
         }
       </ul>
     </div>);
   };
 
-  return(
+  return (
     <div>
 
       {generateCohorts(cohorts)}
