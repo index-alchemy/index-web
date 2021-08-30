@@ -3,7 +3,7 @@ import usePitch from '../../state/usePitch.js';
 
 const PitchPage = () => {
 
-  const { loading, pitch, comments } = usePitch();
+  const { loading, pitch } = usePitch();
 
   return <>
     <div className="PitchPage">

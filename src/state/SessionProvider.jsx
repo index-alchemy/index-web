@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { signUp as postSignUp, logIn as postLogIn } from '../services/indexAuthAPI.js';
 
@@ -20,12 +20,12 @@ const SessionProvider = ({ children }) => {
     setLoading(true);
     return await action(data)
       .then(res => setSession(res))
-      .finally(() => { 
+      .finally(() => {
         setLoading(false);
         history.push('/home');
       })
       .catch(err => console.error(err))
-    ;
+      ;
   }
 
   const signUp = async signup => signOn(postSignUp, signup);
