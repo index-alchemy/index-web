@@ -1,5 +1,5 @@
 import React from 'react';
-import usePitch from '../../state/usePitch';
+import usePitch from '../../state/usePitch.js';
 
 const PitchPage = () => {
 

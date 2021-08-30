@@ -43,6 +43,19 @@ const Auth = () => {
       color: '#696969',
       cursor: 'pointer',
       boxShadow: '0 0 0.1rem #0003'
+    },
+    authLogOutButton: {
+      marginTop: 0,
+      marginBottom: '0.7rem',
+      backgroundColor: '#F9F9FB',
+      outline: 'none',
+      border: [0.5, 'solid', '#ABABAB'],
+      borderRadius: '2px',
+      padding: '2px 8px',
+      fontSize: '0.8rem',
+      color: '#696969',
+      cursor: 'pointer',
+      boxShadow: '0 0 0.1rem #0003'
     }
   });
   const classes = useStyles();
@@ -59,8 +72,8 @@ const Auth = () => {
 
     // decide whether to sign up or log in
     const action = accountExists ? logIn : signUp;
-    action({ 
-      email: email.value, 
+    action({
+      email: email.value,
       name: name && name.value,
       cohort: cohort && cohort.value,
       password: password.value
@@ -69,29 +82,29 @@ const Auth = () => {
 
   return <div className={classes.authPage}>
     <h1>Index 📚</h1>
-    <form 
-      className="Auth"
+    <form
+      className={classes.authForm}
       onSubmit={handleSubmit}
     >
-      <input name="email" placeholder="email" type="text"/>
+      <input name="email" placeholder="email" type="text" />
       {!accountExists && <>
-        <input name="name" placeholder="name" type="text"/>
+        <input name="name" placeholder="name" type="text" />
         <select defaultValue="21-03" name="cohort">
-          {cohorts.map(cohort => 
+          {cohorts.map(cohort =>
             <option key={cohort.code} value={cohort.code}>{cohort.name}</option>)
           }
         </select>
       </>}
-      <input name="password" placeholder="password" type="password"/>
+      <input name="password" placeholder="password" type="password" />
 
-      {loading 
+      {loading
         ? <span>...</span>
         : <>
-          <button className={classes.authButton} type="submit">{accountExists ? 'Log In!' : 'Sign Up :)'}</button>
-          {Boolean(session) && <button onClick={logOut}>Log Out</button>}
+          <button className={classes.authButton} type="submit">{accountExists ? 'Log In' : 'Sign Up'}</button>
+          {Boolean(session) && <button className={classes.authLogOutButton} onClick={logOut}>Log Out</button>}
         </>
       }
-      <span 
+      <span
         className={classes.authToggle}
         onClick={() => setAccountExists(!accountExists)}
       >{accountExists ? 'Need' : 'Already have'} an account?</span>
