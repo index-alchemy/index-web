@@ -28,7 +28,7 @@ const SprintPage = () => {
 
   const { loading, sprint, pitches } = useSprint();
 
-  
+
 
   return <>
     <div className={classes.sprintPage}>
