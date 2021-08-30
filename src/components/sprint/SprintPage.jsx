@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSprint } from '../../state/useSprint';
 import PitchItem from './PitchItem';
 
@@ -6,7 +7,7 @@ const SprintPage = () => {
 
   const { loading, sprint, pitches } = useSprint();
 
-  console.log(pitches);
+  
 
   return <>
     <div className="SprintPage">
@@ -18,6 +19,7 @@ const SprintPage = () => {
               {pitches.map(pitch => 
                 <PitchItem key={pitch.id} pitch={pitch}/>
               )}
+              <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
             </ul>
         </>
       }
