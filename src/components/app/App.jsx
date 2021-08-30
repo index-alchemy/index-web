@@ -5,6 +5,7 @@ import Landing from '../landing/Landing.jsx';
 import SprintList from '../home/SprintList';
 import SprintPage from '../sprint/SprintPage';
 import PitchPage from '../pitch/PitchPage';
+import PitchForm from '../pitch/PitchForm';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route exact path="/home" component={SprintList} />
         <Route exact path="/sprints/:id" component={SprintPage} />
         <Route exact path="/pitches/:id" component={PitchPage} />
+        <Route exact path="/add-pitch" component={PitchForm} />
         <Redirect to="/" />
       </Switch>
     </>
