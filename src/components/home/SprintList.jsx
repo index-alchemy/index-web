@@ -2,7 +2,6 @@ import React from 'react';
 import SprintItem from './SprintItem';
 import { useSprints } from '../../state/useSprints';
 import { createUseStyles } from 'react-jss';
-import { findByLabelText } from '@testing-library/react';
 
 export default function SprintList() {
   const useStyles = createUseStyles({

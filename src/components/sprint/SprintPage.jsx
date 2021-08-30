@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSprint } from '../../state/useSprint';
 import PitchItem from './PitchItem';
 import { createUseStyles } from 'react-jss';
@@ -28,7 +29,7 @@ const SprintPage = () => {
 
   const { loading, sprint, pitches } = useSprint();
 
-  console.log(pitches);
+
 
   return <>
     <div className={classes.sprintPage}>
