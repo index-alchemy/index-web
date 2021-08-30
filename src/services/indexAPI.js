@@ -35,3 +35,13 @@ export const fetchCommentsByPitch = async pitchId => {
     .catch(err => console.log(err))
   ;
 };
+
+export const addPitch = (pitch) => {
+  return fetch(`${API}/pitches`, { 
+    method: 'POST', 
+    body: JSON.stringify(pitch), 
+    credentials: 'include'
+  })
+  .then(res => res.json())
+  .catch(err => console.log(err));
+}
