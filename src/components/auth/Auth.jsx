@@ -1,8 +1,51 @@
 import React from 'react';
 import cohorts from '../../cohorts.json';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
+import { createUseStyles } from 'react-jss';
 
 const Auth = () => {
+  const useStyles = createUseStyles({
+    authPage: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '90vh',
+      color: '#1F1F1F'
+    },
+    authForm: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '0.25rem',
+      width: '20rem',
+      padding: '1rem',
+      background: 'none',
+      border: [0.5, 'solid', '#ABABAB'],
+      borderRadius: '0.5rem',
+      boxShadow: '0 0 0.25rem #0003'
+    },
+    authToggle: {
+      cursor: 'pointer',
+      color: '#46a',
+      fontWeight: '400',
+      fontSize: '0.8rem',
+    },
+    authButton: {
+      marginTop: '0.7rem',
+      marginBottom: '0.7rem',
+      backgroundColor: '#F9F9FB',
+      outline: 'none',
+      border: [0.5, 'solid', '#ABABAB'],
+      borderRadius: '2px',
+      padding: '2px 8px',
+      fontSize: '0.8rem',
+      color: '#696969',
+      cursor: 'pointer',
+      boxShadow: '0 0 0.1rem #0003'
+    }
+  });
+  const classes = useStyles();
 
   const { loading, session } = useSession();
   const { signUp, logIn, logOut } = useAuthActions();
@@ -24,7 +67,8 @@ const Auth = () => {
     });
   };
 
-  return <>
+  return <div className={classes.authPage}>
+    <h1>Index 📚</h1>
     <form 
       className="Auth"
       onSubmit={handleSubmit}
@@ -43,18 +87,18 @@ const Auth = () => {
       {loading 
         ? <span>...</span>
         : <>
-          <button type="submit">{accountExists ? 'Log In!' : 'Sign Up :)'}</button>
+          <button className={classes.authButton} type="submit">{accountExists ? 'Log In!' : 'Sign Up :)'}</button>
           {Boolean(session) && <button onClick={logOut}>Log Out</button>}
         </>
       }
       <span 
-        className="auth-toggle"
+        className={classes.authToggle}
         onClick={() => setAccountExists(!accountExists)}
       >{accountExists ? 'Need' : 'Already have'} an account?</span>
     </form>
 
     {session && <span>Hello, {session.name}</span>}
-  </>;
+  </div>;
 };
 
 export default Auth;
