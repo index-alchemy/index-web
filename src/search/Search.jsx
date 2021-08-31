@@ -2,9 +2,8 @@
 import React from 'react';
 import algoliasearch from 'algoliasearch';
 import { Link } from 'react-router-dom';
-import { InstantSearch, SearchBox, Hits, connectHighlight, Pagination } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, Hits, connectHighlight, Pagination, RefinementList } from 'react-instantsearch-dom';
 import './Search.css';
-
 
 const searchClient = algoliasearch('N82H923VC5', 'cfb98a5ccb9ee9a4c9ebe8f6892ae575');
 
@@ -14,7 +13,7 @@ const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
     attribute,
     hit
   });
-  console.log(parsedHit);
+  // console.log(parsedHit);
   return (
     <h4>
       {attribute}:<br></br>
@@ -25,11 +24,21 @@ const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
   );
 });
 
+const Sidebar = () => (
+  <div className="sidebar">
+    <RefinementList attribute="sprint_id" />
+  </div>
+);
+
 const Hit = ({ hit }) => (
-  <p>
-    <CustomHighlight attribute="Pitch" hit={hit} />
-    <CustomHighlight attribute="Description" hit={hit} />
-  </p>
+  <>
+    <p>
+      <CustomHighlight attribute="Pitch" hit={hit} />
+      <CustomHighlight attribute="Description" hit={hit} />
+      <CustomHighlight attribute="Members" hit={hit} />
+      <CustomHighlight attribute="GitHub" hit={hit} />
+    </p>
+  </>
 );
 
 const Search = () => (
@@ -37,6 +46,7 @@ const Search = () => (
     <Link to="/home">Return</Link>
     <InstantSearch searchClient={searchClient} indexName="index_pitches">
       <SearchBox />
+      <Sidebar />
       <Hits hitComponent={Hit} />
       <Pagination
         showFirst={true}
