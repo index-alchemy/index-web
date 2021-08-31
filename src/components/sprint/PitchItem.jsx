@@ -37,12 +37,12 @@ const useStyles = createUseStyles({
   }
 });
 
-const PitchItem = ({ pitch, rank, session, handleReorder }) => {
+const PitchItem = ({ pitch, rank, validCohort, handleReorder }) => {
   const classes = useStyles();
 
   return <>
     <li className={classes.itemContainer}>
-      {Boolean(session) && <input 
+      {validCohort && <input 
         type="number" 
         inputMode="numeric" 
         name={pitch.id}
@@ -60,7 +60,7 @@ const PitchItem = ({ pitch, rank, session, handleReorder }) => {
 PitchItem.propTypes = {
   pitch: PropTypes.object.isRequired,
   rank: PropTypes.number.isRequired,
-  session: PropTypes.object,
+  validCohort: PropTypes.bool,
   handleReorder: PropTypes.func.isRequired
 };
 

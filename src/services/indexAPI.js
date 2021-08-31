@@ -35,6 +35,18 @@ const addPitch = async pitch => await POST('/pitches', pitch);
 
 const addPreference = async pref => await POST('/preferences', pref);
 
+const updatePreference = async pref => {
+  return await fetch(`${API}/preferences/${pref.id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(pref),
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
+  ;
+};
+
 export { 
   fetchSprints, 
   fetchSprint, 
@@ -43,5 +55,6 @@ export {
   fetchPitch, 
   fetchCommentsByPitch,
   addPitch,
-  addPreference
+  addPreference,
+  updatePreference
 };

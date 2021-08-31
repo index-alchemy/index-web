@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import { useSprint } from '../../state/useSprint.js';
+import { addPreference, updatePreference } from '../../services/indexAPI.js';
 import PitchItem from './PitchItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider.jsx';
 
@@ -69,6 +70,32 @@ const SprintPage = () => {
   const { verify } = useAuthActions();
   const { session } = useSession();
 
+  const handleNewPrefs = prefs => {
+    setPrefs(prefs);
+
+    // if prefs already exists in sprint.preferences, update it and PUT preference
+    // else add to sprint.preferences and POST preference
+    const match = sprint.preferences.find(p => p.userId === session.id);
+    if (match) {
+      match.preferences = prefs;
+      updatePreference(match)
+        .then(() => sprint.preferences = [...sprint.preferences.map(p => p.id === match.id ? match : p)])
+        .catch(err => console.error(err))
+      ;
+    } else {
+      addPreference({
+        userId: session.id,
+        sprintId: sprint.id,
+        preference: prefs
+      })
+        .then(res => sprint.preferences.push(res))
+        .catch(err => console.error(err))
+      ;
+    }
+
+    console.log(sprint);
+  }
+
   const handleReorder = e => {
     e.preventDefault();
 
@@ -81,7 +108,9 @@ const SprintPage = () => {
     const newIndex = Number(e.target.value) - 1;
     const newPrefs = relocateItemInArray([...prefs], rank, newIndex);
 
-    setPrefs(newPrefs);
+    console.log('prefs after reorder:', newPrefs);
+
+    handleNewPrefs(newPrefs);
   };
 
   useEffect(() => {
@@ -90,7 +119,9 @@ const SprintPage = () => {
 
   useEffect(() => {
     if (sprint) {
-      if (!prefs.length) setPrefs(sprint.preferences.find(p => p.userId === session.id) || randomPreference(sprint.pitches));
+      if (!prefs.length) {
+        setPrefs(sprint.preferences.find(p => p.userId === session.id) || randomPreference(sprint.pitches));
+      }
     }
   }, [sprint, prefs, session]);
 
@@ -105,7 +136,7 @@ const SprintPage = () => {
               <PitchItem 
                 key={pitch.id} 
                 pitch={pitch} 
-                session={session} 
+                validCohort={Boolean(session) && session.cohort === sprint.cohort}
                 rank={prefs.indexOf(pitch.id)} 
                 handleReorder={handleReorder}
               />
