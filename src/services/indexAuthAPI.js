@@ -13,7 +13,7 @@ const request = async (method, url, body = null) => {
 };
 
 const signUp = async credentials => 
-  await request('POST', '/users/signup', credentials)
+  await request('POST', '/users/auth/signup', credentials)
 ;
 
 const logIn = async credentials => 
