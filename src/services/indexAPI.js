@@ -19,15 +19,21 @@ const fetchPitch = async id => await GET(`/pitches/${id}`);
 
 const fetchCommentsByPitch = async id => await GET(`/pitches/${id}/comments`);
 
-const addPitch = async (pitch) => {
-  return await fetch(`${API}/pitches`, { 
-    method: 'POST', 
-    body: JSON.stringify(pitch), 
-    credentials: 'include'
+const POST = async (route, body) => {
+  return await fetch(`${API}${route}`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
   })
     .then(res => res.json())
-    .catch(err => console.log(err));
+    .catch(err => console.error(err))
+  ;
 };
+
+const addPitch = async pitch => await POST('/pitches', pitch);
+
+const addPreference = async pref => await POST('/preferences', pref);
 
 export { 
   fetchSprints, 
@@ -36,5 +42,6 @@ export {
   fetchPitchesBySprint, 
   fetchPitch, 
   fetchCommentsByPitch,
-  addPitch
+  addPitch,
+  addPreference
 };
