@@ -30,7 +30,7 @@ const usePitch = () => {
   useEffect(() => {
     getPitch(params.id);
     getComments(params.id);
-  }, []);
+  }, [params.id]);
 
   return { loading, pitch, comments, getPitch, getComments };
 };
