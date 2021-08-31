@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import SprintItem from './SprintItem';
-import useCohorts from '../../state/useCohorts';
 import { createUseStyles } from 'react-jss';
-import cohortNames from '../../cohorts.json';
+import SprintItem from './SprintItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
+import useCohorts from '../../state/useCohorts.js';
+import cohortNames from '../../cohorts.json';
 
 const useStyles = createUseStyles({
   container: {
@@ -77,8 +77,8 @@ export default function SprintList() {
         />
         <ul className={classes.sprintList}>
           {cohorts[cohort].map(sprint =>
-            <SprintItem key={sprint.id} sprint={sprint}/>)
-          }
+            <SprintItem key={sprint.id} sprint={sprint}/>
+          )}
         </ul>
       </div>
     </div>);

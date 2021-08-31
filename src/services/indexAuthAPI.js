@@ -1,4 +1,4 @@
-const API = 'http://localhost:7890/api/v1';
+const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1';
 
 const request = async (method, url, body = null) => {
   return await fetch(`${API}${url}`, {
