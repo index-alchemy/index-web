@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from '../auth/Auth.jsx';
+import Auth from '../auth/Auth';
 
 const Landing = () => {
   return (
