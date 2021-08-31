@@ -14,6 +14,10 @@ export default function Header() {
       '& h3': {
         marginLeft: '1rem'
       },
+      '& a': {
+        textDecoration: 'none',
+        color: 'black'
+      }
     },
     headerNav: {
       display: 'flex',
@@ -30,8 +34,8 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <h3>Index 📚</h3>
-      <div class={classes.headerNav}>
+      <h3><Link to="/">Index 📚</Link></h3>
+      <div className={classes.headerNav}>
         <Link to="/home">Sprints</Link>
         <Link to="/search">Search</Link>
       </div>
