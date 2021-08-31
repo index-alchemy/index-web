@@ -13,6 +13,7 @@ const useStyles = createUseStyles({
     gap: '0.5rem',
     '& input': {
       width: '3rem',
+      background: 'transparent',
     }
   },
   pitchItem: {
@@ -66,18 +67,21 @@ const PitchItem = ({ pitch, prefs, session, setPrefs }) => {
 
   const handleReorder = e => {
     e.preventDefault();
-    e.target.value = Math.max(1, Number(e.target.value.trim())) || (rank + 1);
-    e.target.value = Math.min(prefs.length + 1, Number(e.target.value));
-    const newIndex = Number(e.target.value) - 1;
+
     // validate that e.target.value is a valid number
+    e.target.value = Math.max(1, Number(e.target.value.trim())) || (rank + 1);
+    e.target.value = Math.min(prefs.length, Number(e.target.value));
+
+    const newIndex = Number(e.target.value) - 1;
     const newPrefs = relocateItemInArray([...prefs], rank, newIndex);
     console.log(newPrefs);
+    setPrefs(newPrefs);
   };
 
   return <>
     <li className={classes.itemContainer}>
       {Boolean(session) && <input 
-        type="text" 
+        type="number" 
         inputMode="numeric" 
         name={pitch.id}
         defaultValue={rank + 1}
