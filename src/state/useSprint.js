@@ -20,7 +20,7 @@ export const useSprint = () => {
       .then(setPitches)
       .catch(err => console.error(err))
     ;
-  }, []);
+  }, [params.id]);
 
   return { loading, sprint, pitches };
 }

@@ -2,13 +2,12 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Header from '../header/Header';
-import Landing from '../landing/Landing.jsx';
+import Landing from '../landing/Landing';
 import SprintList from '../home/SprintList';
 import SprintPage from '../sprint/SprintPage';
 import PitchPage from '../pitch/PitchPage';
 import PitchForm from '../pitch/PitchForm';
 import Search from '../../search/Search';
-
 
 export default function App() {
   return (
@@ -25,4 +24,4 @@ export default function App() {
       </Switch>
     </>
   );
-}
+};

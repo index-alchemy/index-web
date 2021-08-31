@@ -1,35 +1,34 @@
 import React from 'react';
-import { useSprint } from '../../state/useSprint';
-import PitchItem from './PitchItem';
 import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import { useSprint } from '../../state/useSprint.js';
+import PitchItem from './PitchItem';
+
+const useStyles = createUseStyles({
+  sprintPage: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    padding: '1rem',
+  },
+  pitchList: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    padding: '1rem',
+  }
+});
 
 const SprintPage = () => {
-  const useStyles = createUseStyles({
-    sprintPage: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-      padding: '1rem',
-    },
-    pitchList: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
-      padding: '1rem',
-    }
-  });
   const classes = useStyles();
 
   const { loading, sprint, pitches } = useSprint();
-
-
 
   return <>
     <div className={classes.sprintPage}>
