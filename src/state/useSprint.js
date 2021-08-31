@@ -4,7 +4,7 @@ import { fetchSprint, fetchPitchesBySprint } from '../services/indexAPI.js';
 
 export const useSprint = () => {
   const [loading, setLoading] = useState(true);
-  const [sprint, setSprint] = useState([]);
+  const [sprint, setSprint] = useState(null);
   const [pitches, setPitches] = useState([]);
 
   const params = useParams();
