@@ -3,6 +3,7 @@ const API = 'http://localhost:7890/api/v1';
 const request = async (method, url, body = null) => {
   return await fetch(`${API}${url}`, {
     method,
+    mode: 'cors',
     headers: body ? { 'Content-Type': 'application/json' } : {},
     credentials: 'include',
     body: body ? JSON.stringify(body) : null,
