@@ -37,46 +37,8 @@ const useStyles = createUseStyles({
   }
 });
 
-const relocateItemInArray = (arr, oldIndex, newIndex) => {
-  let i, tmp;
-  oldIndex = parseInt(oldIndex, 10);
-  newIndex = parseInt(newIndex, 10);
-
-  if (oldIndex !== newIndex && 0 <= oldIndex && oldIndex <= arr.length && 0 <= newIndex && newIndex <= arr.length) {
-    tmp = arr[oldIndex];
-    if (oldIndex < newIndex) {
-      for (i = oldIndex; i < newIndex; i++) {
-        arr[i] = arr[i + 1];
-      }
-    }
-    else {
-      for (i = oldIndex; i > newIndex; i--) {
-        arr[i] = arr[i - 1];
-      }
-    }
-    arr[newIndex] = tmp;
-  }
-
-  return arr;
-}
-
-const PitchItem = ({ pitch, prefs, session, setPrefs }) => {
+const PitchItem = ({ pitch, rank, session, handleReorder }) => {
   const classes = useStyles();
-
-  const rank = prefs.indexOf(pitch.id);
-
-  const handleReorder = e => {
-    e.preventDefault();
-
-    // validate that e.target.value is a valid number
-    e.target.value = Math.max(1, Number(e.target.value.trim())) || (rank + 1);
-    e.target.value = Math.min(prefs.length, Number(e.target.value));
-
-    const newIndex = Number(e.target.value) - 1;
-    const newPrefs = relocateItemInArray([...prefs], rank, newIndex);
-    console.log(newPrefs);
-    setPrefs(newPrefs);
-  };
 
   return <>
     <li className={classes.itemContainer}>
@@ -84,7 +46,7 @@ const PitchItem = ({ pitch, prefs, session, setPrefs }) => {
         type="number" 
         inputMode="numeric" 
         name={pitch.id}
-        defaultValue={rank + 1}
+        value={rank + 1}
         onChange={handleReorder}
       />}
       <div className={classes.pitchItem}>
@@ -97,9 +59,9 @@ const PitchItem = ({ pitch, prefs, session, setPrefs }) => {
 
 PitchItem.propTypes = {
   pitch: PropTypes.object.isRequired,
-  prefs: PropTypes.array.isRequired,
-  setPrefs: PropTypes.func.isRequired,
-  session: PropTypes.object.isRequired,
+  rank: PropTypes.number.isRequired,
+  session: PropTypes.object,
+  handleReorder: PropTypes.func.isRequired
 };
 
 export default PitchItem;
