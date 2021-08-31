@@ -19,14 +19,14 @@ const fetchPitch = async id => await GET(`/pitches/${id}`);
 
 const fetchCommentsByPitch = async id => await GET(`/pitches/${id}/comments`);
 
-const addPitch = (pitch) => {
-  return fetch(`${API}/pitches`, { 
+const addPitch = async (pitch) => {
+  return await fetch(`${API}/pitches`, { 
     method: 'POST', 
     body: JSON.stringify(pitch), 
     credentials: 'include'
   })
-  .then(res => res.json())
-  .catch(err => console.log(err));
+    .then(res => res.json())
+    .catch(err => console.log(err));
 };
 
 export { 

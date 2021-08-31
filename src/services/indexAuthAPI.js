@@ -1,4 +1,4 @@
-const API = 'http://localhost:7890/api/v1';
+const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1';
 
 const request = async (method, url, body = null) => {
   return await fetch(`${API}${url}`, {
@@ -14,7 +14,7 @@ const request = async (method, url, body = null) => {
 };
 
 const signUp = async credentials => 
-  await request('POST', '/users/signup', credentials)
+  await request('POST', '/users/auth/signup', credentials)
 ;
 
 const logIn = async credentials => 

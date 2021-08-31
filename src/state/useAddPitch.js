@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { addPitch } from '../services/indexAPI';
+import { addPitch } from '../services/indexAPI.js';
 
 const useAddPitch = () => {
 
@@ -19,7 +19,7 @@ const useAddPitch = () => {
       default:
         break;
     }
-  }
+  };
 
   const handleSubmit = async (e, sprintId) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const useAddPitch = () => {
         history.push(`/sprints/${pitch.sprintId}`);
       })
     ;
-  }
+  };
 
   return { pitch, description, handleChange, handleSubmit };
 
