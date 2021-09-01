@@ -21,7 +21,23 @@
   margin: 1em;
 }
 
+.ais-SearchBox.searchBox {
+  padding-top: 1em;
+  padding-bottom: 0em; 
+}
+
 .ais-Pagination {
   padding-bottom: 2em;
+}
+
+h1{
+  padding-top: 1em;
+  padding-bottom: .5em;
+  margin: 0;
+}
+
+h2{
+  padding: 0;
+  margin: 0;
 }
 
