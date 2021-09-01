@@ -24,7 +24,7 @@ const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
 
 const Sidebar = () => (
   <div className="sidebar">
-    <RefinementList attribute="sprint_id" />
+    <RefinementList attribute="Sprint" />
   </div>
 );
 
