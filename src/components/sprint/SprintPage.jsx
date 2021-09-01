@@ -31,19 +31,14 @@ const SprintPage = () => {
   const classes = useStyles();
 
   const params = useParams();
-  const { session } = useSession();
+  const { session, isAdmin } = useSession();
   const { verify } = useAuthActions();
-  const { loading, sprint, prefs, initializePrefs, updatePrefs } = useSprint(params.id);
+  const { loading, sprint, prefs, initializePrefs, updatePrefs, updateResult } = useSprint(params.id);
 
   useEffect(() => {
     if (!session) verify();
     else if (!Boolean(prefs.length) && Boolean(sprint)) initializePrefs(session.id);
   }, [session, verify, initializePrefs, prefs, sprint]);
-
-  const handleNewPrefs = prefs => {
-    updatePrefs(session.id, prefs)
-    console.log(sprint);
-  }
 
   const handleReorder = e => {
     e.preventDefault();
@@ -57,10 +52,10 @@ const SprintPage = () => {
     const newIndex = Number(e.target.value) - 1;
     const newPrefs = relocateItemInArray([...prefs], rank, newIndex);
 
-    console.log('prefs after reorder:', newPrefs);
-
-    handleNewPrefs(newPrefs);
+    updatePrefs(session.id, newPrefs);
   };
+
+  console.log(sprint);
 
   return <>
     <div className={classes.sprintPage}>
@@ -70,17 +65,17 @@ const SprintPage = () => {
           <h1>{sprint.name}</h1>
           <span>{sprint.preferences.length} students have voted</span>
 
-          {session.isAdmin ?
-            <button>end pitches</button> : null
-          }
+          {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
 
           <ul className={classes.pitchList}>
             {sprint.pitches.map(pitch =>
               <PitchItem 
                 key={pitch.id} 
                 pitch={pitch} 
-                validCohort={Boolean(session) && session.cohort === sprint.cohort
-                  && !session.isAdmin}
+                validCohort={Boolean(session) 
+                  && session.cohort === sprint.cohort
+                  && !isAdmin
+                }
                 rank={prefs.indexOf(pitch.id)} 
                 handleReorder={handleReorder}
               />
