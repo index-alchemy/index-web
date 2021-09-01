@@ -21,9 +21,12 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
+    width: 'calc(400px + 2.6rem)',
+    '@media (max-width: 500px)': {
+      width: 'calc(300px + 2.6rem)'
+    },
     height: '100%',
-    padding: '1rem',
+    padding: '0.8rem',
   }
 });
 
@@ -55,15 +58,16 @@ const SprintPage = () => {
     updatePrefs(session.id, newPrefs);
   };
 
-  console.log(sprint);
-
   return <>
     <div className={classes.sprintPage}>
       {loading && !Boolean(sprint)
         ? <span>loading...</span>
         : <>
           <h1>{sprint.name}</h1>
-          <span>{sprint.preferences.length} students have voted</span>
+          {sprint.preferences.length === 1
+            ? <span>{sprint.preferences.length} student has voted</span>
+            : <span>{sprint.preferences.length} students have voted</span>
+          }
 
           {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
 
@@ -83,7 +87,6 @@ const SprintPage = () => {
           </ul>
 
           <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
-
 
         </>
       }
