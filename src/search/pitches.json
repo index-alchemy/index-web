@@ -1237,5 +1237,145 @@
     "Description": "Browse, upvote/downvote movies and add to your personal list to watch later.",
     "Members": "David Delgadillo, Tucker Hoog, Zach Gaines, Vijay Chakram",
     "GitHub": "https://github.com/David-Del1/movie-bytes, https://github.com/thankrandomness/march-2021-f2-project-server"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Mid",
+    "Pitch": "Twin Peaks API",
+    "Description": "A RESTful API that allows users to search for quotes and character info from Twin Peaks",
+    "Members": "Austin Summerlin, Zach Gaines, Kayla Schoorl, Tucker Hoog, Taylor Tokareff",
+    "GitHub": "https://github.com/TwinPeaksAPI/TwinPeaksAPI"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Mid",
+    "Pitch": "Web Wizard",
+    "Description": "Firefox extension to customize webpage CSS",
+    "Members": "Kalan Prudhomme, Kara Pedersen, Angel Ortiz, Austin Duong, Vijay Chakram, Matt Saber",
+    "GitHub": "https://github.com/KAKMAV/web-wizard"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Mid",
+    "Pitch": "Curbee",
+    "Description": "Community free stuff alert system",
+    "Members": "Annaliegh Hickman, Christiane Merritt, Clem Hepburn, Culi Tif, Katherine Tam, Tis Lais",
+    "GitHub": "https://github.com/curbee-by-curbees"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Mid",
+    "Pitch": "Market Scraper",
+    "Description": "One stop shop for users looking to purchase items from Craigslist and/or VarageSale.",
+    "Members": "Joe Davis, Nick Day, Casey Cameron, Chase Abbott, Gabriel Simek, David Delgadillo",
+    "GitHub": "https://github.com/scrape-apes/scrape-back"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Final",
+    "Pitch": "Chordial",
+    "Description": "A beautifully designed app that lets users find chord harmonies and create songs",
+    "Members": "Casey Cameron, David Delgadillo, Kalan Prudhomme",
+    "GitHub": "https://github.com/Chordial-Music/Chordial-FE"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Final",
+    "Pitch": "Index",
+    "Description": "A collaborative project brainstorming app",
+    "Members": "Annaleigh Hickman, Austin Summerlin, Clem Hepburn, Culi Tif",
+    "GitHub": "https://github.com/index-alchemy"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Final",
+    "Pitch": "Local Impact",
+    "Description": "Make use of the ESRI api to display environmental factors the end user could be concerned about where they live or at locations they pick.",
+    "Members": "Nick Day, Tucker Hoog, Austin Duong",
+    "GitHub": "https://github.com/AuNiTu/Backend-Impact, https://github.com/AuNiTu/Local-Impact"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Final",
+    "Pitch": "Zilch 2.0",
+    "Description": "Zilch 2.0 is an interactive multiplayer browser game of chance and skill; based on Zilch, the dice game. With it's responsive design, users can play on their phone or desktop. Utilizing socket.io, multiple rooms will allow for different games to be played simultaneously while players can see their opponent's moves in real time. Users will also be able to view their game history and overall stats through player profiles and the global leaderboard.",
+    "Members": "Chase Abbott, Gabriel Simek, Joe David, Katherine Tam, Tis Lais",
+    "GitHub": "https://github.com/etvvas/zilch-2.0-fe, https://github.com/etvvas/zilch-2.0-be"
+  },
+  {
+    "sprint_id": "March 21 - CareerTrack Final",
+    "Pitch": "Tech Wiz Quiz",
+    "Description": "A trivia game to help people learn information about coding.",
+    "Members": "Zach Gaines, Christiane Merritt, Angel Ortiz, Taylor Tokareff",
+    "GitHub": "https://github.com/techwizquiz"
+  },
+  {
+    "sprint_id": "April 21 - Foundations I",
+    "Pitch": "Alchegotchi",
+    "Description": "Alchegotchi is an interactive virtual pet app, styled to bring back memories of the Tomagotchi toy from the late nineties. The app allows the user to create an account and choose between three different pets to feed, water, and give attention to. It is a feel good app that can be enjoyed by nostalgic adults and kids alike.",
+    "Members": "Ben Francka, Kubi Kubisiak, Madden Lockin, Peter Montaño",
+    "GitHub": "https://github.com/Virtual-Pet-Task-Munger/virtual-pet/tree/dev"
+  },
+  {
+    "sprint_id": "April 21 - Foundations I",
+    "Pitch": "Okane",
+    "Description": "A simple budgeting app to track income, expenses and savings.",
+    "Members": "Chen Zhao, Isaac Ewing, Kyle Mayer, Sofia Tejada",
+    "GitHub": "https://github.com/kylemayer/f1-group-project-okane"
+  },
+  {
+    "sprint_id": "April 21 - Foundations I",
+    "Pitch": "The Tales of Torr: the Quest to Defeat the Everlasting Dragon",
+    "Description": "The Tales of Torr: the Quest to Defeat the Everlasting Dragon is a retro rpg inspired app where you take the role of a brave hero on a quest to, surprise, defeat a dragon.",
+    "Members": "DJ Drakos, Elise Muellerleile, Maria Ortiz-Lopez, Missael Ortiz, Sean Simpson",
+    "GitHub": "https://github.com/MissaelOrtiz/The-Tales-of-Torr-The-Quest-to-Defeat-the-Everlasting-Dragon"
+  },
+  {
+    "sprint_id": "April 21 - Foundations I",
+    "Pitch": "AlcheFeed",
+    "Description": "We are BuzzFeed the Alchemy way. Answering the questions that keep you up late at night.",
+    "Members": "Alonzo Anderson, Bri Bias, Derek Hudgins, Dimitra Weinstein",
+    "GitHub": "https://github.com/Alonzo-Anderson/alchefeed"
+  },
+  {
+    "sprint_id": "April 21 - Foundations II",
+    "Pitch": "AstroLocus",
+    "Description": "AstroLocus is a companion app for amateur astronomers to investigate Dark Sky Objects, keep track of objects they want to find in the future, and write logs and upload pictures of their finds. The app includes sky conditions based on the users location to help the user know when conditions are best for star gazing.",
+    "Members": "Ben Francka, DJ Drakos, Isaac Ewing, Kubi Kubisiak, Sofia Tejada",
+    "GitHub": "https://github.com/Astromapi"
+  },
+  {
+    "sprint_id": "April 21 - Foundations II",
+    "Pitch": "Triforce Trivia",
+    "Description": "",
+    "Members": "Chen Zhao, Dimitra Weinstein, Elise Muellerleile",
+    "GitHub": "https://github.com/Triforce-Trivia"
+  },
+  {
+    "sprint_id": "April 21 - Foundations II",
+    "Pitch": "Birdzai",
+    "Description": "Birdzai is the ultimate bird locator app.",
+    "Members": "Alonzo Anderson, Derek Hudgins, Kyle Mayer, Peter Montaño, Sean Simpson",
+    "GitHub": "https://github.com/f2-birds-i-fe"
+  },
+  {
+    "sprint_id": "April 21 - Foundations II",
+    "Pitch": "Hands of Fate",
+    "Description": "A tarot-inspired card collector where you, The Fool, set out to struggle against Fate in order to collect 78 unique tarot cards. Fight against the strange Will of Fate, get your tarot read, and reclaim your own destiny!",
+    "Members": "Maria Ortiz-Lopez, Missael Ortiz, Madden Lockin, Bri Bias",
+    "GitHub": "https://github.com/hands-of-fate"
+  },
+  {
+    "sprint_id": "April 21 - CareerTrack Mid",
+    "Pitch": "Affirbisiaks",
+    "Description": "Text sign up for daily positive affirmations",
+    "Members": "Kubi Kubisiak, DJ Drakos, Isaac Ewing, Sean Simpson, Missael Ortiz",
+    "GitHub": ""
+  },
+  {
+    "sprint_id": "April 21 - CareerTrack Mid",
+    "Pitch": "SafeSRC",
+    "Description": "24/7 availability, alternatives to calling the police, GPS based, combined with Dimitra’s idea for a Twitter bot, that finds new popups/event/resources",
+    "Members": "Bri Bias, Dimitra Weinstein, Maria Ortiz-Lopez, Sofia Tejada, Elise Muellerleile, Ben Francka",
+    "GitHub": ""
+  },
+  {
+    "sprint_id": "April 21 - CareerTrack Mid",
+    "Pitch": "Brewster",
+    "Description": "An API for cataloging various types of coffee.",
+    "Members": "Derek Hudgins, Kyle Mayer, Alonzo Anderson, Chen Zhao, Peter Montaño",
+    "GitHub": ""
   }
 ]

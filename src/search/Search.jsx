@@ -35,6 +35,7 @@ const Hit = ({ hit }) => (
       <CustomHighlight attribute="Description" hit={hit} />
       <CustomHighlight attribute="Members" hit={hit} />
       <CustomHighlight attribute="GitHub" hit={hit} />
+      <CustomHighlight attribute="Sprint" hit={hit} />
     </p>
   </>
 );
