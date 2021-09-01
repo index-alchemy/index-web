@@ -1,26 +1,59 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchSprint, fetchPitchesBySprint } from '../services/indexAPI.js';
+import { fetchSprint, updatePreference, addPreference } from '../services/indexAPI.js';
+import { shuffleArray } from '../utils/utils.js';
 
-export const useSprint = () => {
+export const useSprint = id => {
   const [loading, setLoading] = useState(true);
-  const [sprint, setSprint] = useState([]);
-  const [pitches, setPitches] = useState([]);
-
-  const params = useParams();
+  const [sprint, setSprint] = useState(null);
+  const [prefs, setPrefs] = useState([]);
 
   useEffect(() => {
-    fetchSprint(params.id)
+    fetchSprint(id)
       .then(setSprint)
-      .finally(() => setLoading(false))
+      .then(() => setLoading(false))
       .catch(err => console.error(err))
     ;
+  }, []);
 
-    fetchPitchesBySprint(params.id)
-      .then(setPitches)
-      .catch(err => console.error(err))
-    ;
-  }, [params.id]);
+  const initializePrefs = userId => {
+    // initialize prefs
+    const match = sprint.preferences.find(p => p.userId === userId);
+    setPrefs(match 
+      ? match.preference
+      : shuffleArray(sprint.pitches.map(p => p.id))
+    );
+  };
 
-  return { loading, sprint, pitches };
+  const updatePrefs = (userId, preference) => {
+    setPrefs(preference);
+
+    const match = sprint.preferences.find(p => p.userId === userId);
+    if (match) {
+      match.preference = preference;
+      updatePreference(match)
+        .then(res => setPrefs(res.preference))
+        .then(() => {
+          const newListOfPrefs = [...sprint.preferences.map(
+            p => p.id === match.id ? match : p)
+          ];
+          setSprint({ ...sprint, preferences: newListOfPrefs });
+        })
+        .catch(err => console.error(err))
+      ;
+    } else {
+      addPreference({
+        sprintId: sprint.id,
+        userId,
+        preference
+      })
+        .then(res => {
+          setPrefs(res.preference);
+          setSprint({ ...sprint, preferences: [...sprint.preferences, res] });
+        })
+        .catch(err => console.error(err))
+      ;
+    }
+  };
+
+  return { loading, sprint, prefs, initializePrefs, updatePrefs };
 }

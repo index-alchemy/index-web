@@ -53,12 +53,12 @@ const useStyles = createUseStyles({
   }
 });
 
-export default function SprintList() {
+const SprintList = () => {
 
   const classes = useStyles();
 
   const { cohorts } = useCohorts();
-  const { session } = useSession();
+  const { session, isAdmin } = useSession();
   const { verify } = useAuthActions();
 
   useEffect(() => {
@@ -66,9 +66,12 @@ export default function SprintList() {
   }, [session, verify]);
 
   const generateCohorts = cohorts => {
-    return Object.keys(cohorts).reverse().map(cohort => <div className={classes.wildDiv} key={cohort}>
-      <div className={classes.cohortSprints}>
-        <label htmlFor={`checkbox-${cohort}`}><h3 className={classes.cohort}>{cohortNames[cohort]}</h3></label>
+    return Object.keys(cohorts).reverse().map(cohort => <>
+      {Boolean(cohorts[cohort].reduce((acc, sprint) => acc + sprint.count, 0)) &&
+      <div className={classes.cohortSprints} key={cohort}>
+        <label htmlFor={`checkbox-${cohort}`}>
+          <h3 className={classes.cohort}>{cohortNames[cohort]}</h3>
+        </label>
         <input 
           id={`checkbox-${cohort}`}
           className={classes.cohortToggle} 
@@ -80,8 +83,8 @@ export default function SprintList() {
             <SprintItem key={sprint.id} sprint={sprint}/>
           )}
         </ul>
-      </div>
-    </div>);
+      </div>}</>
+    );
   };
 
   return (
@@ -92,6 +95,10 @@ export default function SprintList() {
         {generateCohorts(cohorts)}
 
       </div>
+
+      {isAdmin && <button>create new sprint</button>}
     </div>
   );
-}
+};
+
+export default SprintList;

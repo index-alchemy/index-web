@@ -7,7 +7,10 @@ const request = async (method, url, body = null) => {
     credentials: 'include',
     body: body ? JSON.stringify(body) : null,
   })
-    .then(res => res.json())
+    .then(res => {
+      console.log('response', res);
+      return res.json()
+    })
     .catch(err => console.error(err))
   ;
 };

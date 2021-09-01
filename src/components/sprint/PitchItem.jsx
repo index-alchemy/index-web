@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
+  itemContainer: {
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '0.5rem',
+    '& input': {
+      width: '3rem',
+      background: 'transparent',
+    }
+  },
   pitchItem: {
     listStyle: 'none',
     display: 'flex',
@@ -25,19 +37,31 @@ const useStyles = createUseStyles({
   }
 });
 
-const PitchItem = ({ pitch }) => {
+const PitchItem = ({ pitch, rank, validCohort, handleReorder }) => {
   const classes = useStyles();
 
   return <>
-    <li className={classes.pitchItem}>
-      <Link className={classes.pitchTitle} to={`/pitches/${pitch.id}`}>{pitch.pitch}</Link>
-      <span className={classes.pitchDescription}>{pitch.description}</span>
+    <li className={classes.itemContainer}>
+      {validCohort && <input 
+        type="number" 
+        inputMode="numeric" 
+        name={pitch.id}
+        value={rank + 1}
+        onChange={handleReorder}
+      />}
+      <div className={classes.pitchItem}>
+        <Link className={classes.pitchTitle} to={`/pitches/${pitch.id}`}>{pitch.pitch}</Link>
+        <span className={classes.pitchDescription}>{pitch.description}</span>
+      </div>
     </li>
   </>;
 };
 
 PitchItem.propTypes = {
-  pitch: PropTypes.object.isRequired
+  pitch: PropTypes.object.isRequired,
+  rank: PropTypes.number.isRequired,
+  validCohort: PropTypes.bool,
+  handleReorder: PropTypes.func.isRequired
 };
 
 export default PitchItem;
