@@ -8,8 +8,7 @@ const getPrevUser = () => {
 
 const setPrevUser = (user) => {
   if (user) {
-    const { id, email, name, cohort } = user;
-    localStorage.setItem(USER, JSON.stringify({ id, email, name, cohort }));
+    localStorage.setItem(USER, JSON.stringify(user));
   } else localStorage.removeItem(USER);
 };
 
