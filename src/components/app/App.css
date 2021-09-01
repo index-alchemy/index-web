@@ -7,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   font-family: 'Inter', Helvetica, sans-serif;
   background-color: #F9F9FB;
