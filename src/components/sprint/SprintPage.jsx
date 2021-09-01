@@ -69,6 +69,7 @@ const SprintPage = () => {
         ? <span>loading...</span>
         : <>
           <h1>{sprint.name}</h1>
+          <span>{sprint.preferences.length} students have voted</span>
           <ul className={classes.pitchList}>
             {sprint.pitches.map(pitch =>
               <PitchItem 
