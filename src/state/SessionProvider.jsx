@@ -29,8 +29,11 @@ const SessionProvider = ({ children }) => {
   const logIn = async login => signOn(postLogIn, login);
 
   const logOut = async () => {
-    postLogOut();
-    setSession(null);
+    console.log('logging out', session);
+    postLogOut()
+      .then(() => setSession(null))
+      .catch(err => console.error(err))
+    ;
   };
 
   const verify = async () => {

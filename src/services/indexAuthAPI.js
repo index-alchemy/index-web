@@ -3,12 +3,14 @@ const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1
 const request = async (method, url, body = null) => {
   return await fetch(`${API}${url}`, {
     method,
-    mode: 'cors',
     headers: body ? { 'Content-Type': 'application/json' } : {},
     credentials: 'include',
     body: body ? JSON.stringify(body) : null,
   })
-    .then(res => res.json())
+    .then(res => {
+      console.log('response', res);
+      return res.json()
+    })
     .catch(err => console.error(err))
   ;
 };
