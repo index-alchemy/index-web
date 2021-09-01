@@ -73,13 +73,14 @@ const SprintPage = () => {
           {session.isAdmin ?
             <button>end pitches</button> : null
           }
-          
+
           <ul className={classes.pitchList}>
             {sprint.pitches.map(pitch =>
               <PitchItem 
                 key={pitch.id} 
                 pitch={pitch} 
-                validCohort={Boolean(session) && session.cohort === sprint.cohort}
+                validCohort={Boolean(session) && session.cohort === sprint.cohort
+                  && !session.isAdmin}
                 rank={prefs.indexOf(pitch.id)} 
                 handleReorder={handleReorder}
               />
