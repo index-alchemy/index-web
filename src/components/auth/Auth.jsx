@@ -69,7 +69,7 @@ const Auth = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const { email, password, name, cohort } = e.target;
+    const { email, password, name, cohort, ta } = e.target;
 
     // decide whether to sign up or log in
     const action = accountExists ? logIn : signUp;
@@ -77,7 +77,8 @@ const Auth = () => {
       email: email.value,
       name: name && name.value,
       cohort: cohort && cohort.value,
-      password: password.value
+      password: password.value,
+      isAdmin: ta.checked
     });
   };
 
@@ -110,6 +111,13 @@ const Auth = () => {
             <option key={cohort} value={cohort}>{cohorts[cohort]}</option>)
           }
         </select>
+        <span>
+          
+          <label>
+          Staff?
+          <input type="checkbox" name="ta" value="yes"/>
+          </label>
+        </span>
       </>}
       {!Boolean(session) && <input name="password" placeholder="password" type="password"/>}
 

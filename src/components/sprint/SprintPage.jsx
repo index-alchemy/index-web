@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import { useSprint } from '../../state/useSprint.js';
+import { useSession } from '../../state/SessionProvider.jsx';
 import PitchItem from './PitchItem';
 
 const useStyles = createUseStyles({
@@ -29,6 +30,7 @@ const SprintPage = () => {
   const classes = useStyles();
 
   const { loading, sprint, pitches } = useSprint();
+  const { session } = useSession();
 
   return <>
     <div className={classes.sprintPage}>
@@ -43,6 +45,10 @@ const SprintPage = () => {
           </ul>
 
           <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
+
+          {session.isAdmin ?
+            <button>end pitches</button> : null
+          }
         </>
       }
     </div>
