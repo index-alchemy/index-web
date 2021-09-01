@@ -78,7 +78,7 @@ const Auth = () => {
       name: name && name.value,
       cohort: cohort && cohort.value,
       password: password.value,
-      isAdmin: ta.checked
+      isAdmin: ta && ta.checked
     });
   };
 
