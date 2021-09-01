@@ -2,7 +2,10 @@ const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1
 
 const GET = async route => {
   return await fetch(`${API}${route}`, { credentials: 'include' })
-    .then(res => res.json())
+    .then(res => {
+      console.log('response from', route, res);
+      return res.json();
+    })
     .catch(err => console.error(err))
   ;
 };
@@ -10,6 +13,8 @@ const GET = async route => {
 const fetchSprints = async () => await GET('/sprints');
 
 const fetchSprint = async id => await GET(`/sprints/${id}`);
+
+const fetchSprintWithResult = async (id, teams) => await GET(`/sprints/${id}/result?teams=${teams}`);
 
 const fetchPitches = async () => await GET('/pitches');
 
@@ -50,6 +55,7 @@ const updatePreference = async pref => {
 export { 
   fetchSprints, 
   fetchSprint, 
+  fetchSprintWithResult,
   fetchPitches,
   fetchPitchesBySprint, 
   fetchPitch, 
