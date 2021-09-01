@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { signUp as postSignUp, logIn as postLogIn, verify as postVerify, logOut as postLogOut } from '../services/indexAuthAPI.js';
 import { getPrevUser, setPrevUser } from './localstorage.js';
@@ -8,8 +8,14 @@ const SessionContext = createContext();
 const SessionProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const history = useHistory();
+
+  useEffect(() => {
+    console.log('Session change:', session);
+    if (session) setIsAdmin(!Boolean(session.cohort) || session.isAdmin);
+  }, [session]);
 
   const signOn = async (action, data) => {
     setLoading(true);
@@ -38,12 +44,15 @@ const SessionProvider = ({ children }) => {
 
   const verify = async () => {
     postVerify()
-      .then(ok => setSession(ok ? getPrevUser() : null))
+      .then(ok => {
+        setSession(ok ? getPrevUser() : null);
+        if (!ok) history.push('/');
+      })
       .catch(err => console.error(err))
     ; 
   };
 
-  return <SessionContext.Provider value={{ loading, session, signUp, logIn, logOut, verify }}>
+  return <SessionContext.Provider value={{ loading, session, isAdmin, signUp, logIn, logOut, verify }}>
     {children}
   </SessionContext.Provider>;
 };
@@ -54,8 +63,8 @@ const useAuthActions = () => {
 };
 
 const useSession = () => {
-  const { loading, session } = useContext(SessionContext);
-  return { loading, session };
+  const { loading, session, isAdmin } = useContext(SessionContext);
+  return { loading, session, isAdmin };
 };
 
 export { SessionProvider, useAuthActions, useSession };
