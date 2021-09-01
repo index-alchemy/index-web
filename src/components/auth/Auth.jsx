@@ -70,7 +70,7 @@ const Auth = () => {
     e.preventDefault();
 
     const { email, password, name, cohort, ta } = e.target;
-
+    
     // decide whether to sign up or log in
     const action = accountExists ? logIn : signUp;
     action({
@@ -111,13 +111,10 @@ const Auth = () => {
             <option key={cohort} value={cohort}>{cohorts[cohort]}</option>)
           }
         </select>
-        <span>
-          
           <label>
           Staff?
-          <input type="checkbox" name="ta" value="yes"/>
+            <input type="checkbox" name="ta"/>
           </label>
-        </span>
       </>}
       {!Boolean(session) && <input name="password" placeholder="password" type="password"/>}
 
