@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
-import { useSprint } from '../../state/useSprint.js';
-import { addPreference, updatePreference } from '../../services/indexAPI.js';
+
 import PitchItem from './PitchItem';
-import { useAuthActions, useSession } from '../../state/SessionProvider.jsx';
+import { useAuthActions, useSession } from '../../state/SessionProvider';
+import { useSprint } from '../../state/useSprint.js';
+import { relocateItemInArray } from '../../utils/utils.js';
 
 const useStyles = createUseStyles({
   sprintPage: {
@@ -27,72 +28,21 @@ const useStyles = createUseStyles({
   }
 });
 
-const relocateItemInArray = (arr, oldIndex, newIndex) => {
-  let i, tmp;
-  oldIndex = parseInt(oldIndex, 10);
-  newIndex = parseInt(newIndex, 10);
-
-  if (oldIndex !== newIndex && 0 <= oldIndex && oldIndex <= arr.length && 0 <= newIndex && newIndex <= arr.length) {
-    tmp = arr[oldIndex];
-    if (oldIndex < newIndex) {
-      for (i = oldIndex; i < newIndex; i++) {
-        arr[i] = arr[i + 1];
-      }
-    }
-    else {
-      for (i = oldIndex; i > newIndex; i--) {
-        arr[i] = arr[i - 1];
-      }
-    }
-    arr[newIndex] = tmp;
-  }
-
-  return arr;
-};
-
-const randomPreference = pitches => {
-  const pref = [...pitches.map(p => p.id)];
-  for (let i = pref.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = pref[j];
-    pref[j] = pref[i];
-    pref[i] = temp;
-  }
-  return pref;
-};
-
 const SprintPage = () => {
   const classes = useStyles();
 
-  const [prefs, setPrefs] = useState([]);
-
-  const { loading, sprint } = useSprint();
-  const { verify } = useAuthActions();
+  const params = useParams();
   const { session } = useSession();
+  const { verify } = useAuthActions();
+  const { loading, sprint, prefs, initializePrefs, updatePrefs } = useSprint(params.id);
+
+  useEffect(() => {
+    if (!session) verify();
+    else if (!Boolean(prefs.length) && Boolean(sprint)) initializePrefs(session.id);
+  }, [session, verify, initializePrefs, prefs, sprint]);
 
   const handleNewPrefs = prefs => {
-    setPrefs(prefs);
-
-    // if prefs already exists in sprint.preferences, update it and PUT preference
-    // else add to sprint.preferences and POST preference
-    const match = sprint.preferences.find(p => p.userId === session.id);
-    if (match) {
-      match.preferences = prefs;
-      updatePreference(match)
-        .then(() => sprint.preferences = [...sprint.preferences.map(p => p.id === match.id ? match : p)])
-        .catch(err => console.error(err))
-      ;
-    } else {
-      addPreference({
-        userId: session.id,
-        sprintId: sprint.id,
-        preference: prefs
-      })
-        .then(res => sprint.preferences.push(res))
-        .catch(err => console.error(err))
-      ;
-    }
-
+    updatePrefs(session.id, prefs)
     console.log(sprint);
   }
 
@@ -113,21 +63,9 @@ const SprintPage = () => {
     handleNewPrefs(newPrefs);
   };
 
-  useEffect(() => {
-    if (!session) verify();
-  }, [session, verify]);
-
-  useEffect(() => {
-    if (sprint) {
-      if (!prefs.length) {
-        setPrefs(sprint.preferences.find(p => p.userId === session.id) || randomPreference(sprint.pitches));
-      }
-    }
-  }, [sprint, prefs, session]);
-
   return <>
     <div className={classes.sprintPage}>
-      {loading
+      {loading && !Boolean(sprint)
         ? <span>loading...</span>
         : <>
           <h1>{sprint.name}</h1>
