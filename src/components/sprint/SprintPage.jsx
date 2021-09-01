@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
-
 import PitchItem from './PitchItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useSprint } from '../../state/useSprint.js';
@@ -70,12 +69,18 @@ const SprintPage = () => {
         : <>
           <h1>{sprint.name}</h1>
           <span>{sprint.preferences.length} students have voted</span>
+
+          {session.isAdmin ?
+            <button>end pitches</button> : null
+          }
+
           <ul className={classes.pitchList}>
             {sprint.pitches.map(pitch =>
               <PitchItem 
                 key={pitch.id} 
                 pitch={pitch} 
-                validCohort={Boolean(session) && session.cohort === sprint.cohort}
+                validCohort={Boolean(session) && session.cohort === sprint.cohort
+                  && !session.isAdmin}
                 rank={prefs.indexOf(pitch.id)} 
                 handleReorder={handleReorder}
               />
@@ -83,6 +88,8 @@ const SprintPage = () => {
           </ul>
 
           <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
+
+
         </>
       }
     </div>
