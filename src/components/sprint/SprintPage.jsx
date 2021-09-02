@@ -67,7 +67,7 @@ const SprintPage = () => {
                 <PitchItem
                   key={pitch.id}
                   pitch={pitch}
-                  validCohort={Boolean(session)
+                  showSpinner={Boolean(session)
                     && session.cohort === sprint.cohort
                     && !isAdmin
                   }
