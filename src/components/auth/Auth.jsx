@@ -17,7 +17,7 @@ const Auth = () => {
 
     const { email, password, name, cohort, ta } = e.target;
     
-    // decide whether to sign up or log in
+    // to sign up or log in ?
     const action = accountExists ? logIn : signUp;
     action({
       email: email.value,
