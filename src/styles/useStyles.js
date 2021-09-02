@@ -37,10 +37,10 @@ const useCommonStyles = createUseStyles({
   },
   buttonDefault: {
     background: 'transparent',
-    border: '1px solid #a6a6a6',
+    border: ['0.6px', 'solid', '#ABABAB'],
     borderRadius: '0.25rem',
-    boxShadow: '0 1px 2px 0 #a6a6a6',
-    color: '#36454f',
+    boxShadow: '0px 0px 2px 0.2px rgba(0, 0, 0, 0.31)',
+    color: '#696969',
     fontSize: '1rem',
     cursor: 'pointer',
     padding: '0.4rem 0.8rem',
@@ -64,11 +64,11 @@ const useCommonStyles = createUseStyles({
     }
   },
   buttonPrimary: {
-    backgroundColor: '#36454f',
-    color: '#fffafa',
-    border: '1px solid #a6a6a6',
+    background: 'transparent',
+    color: '#696969',
+    border: ['0.6px', 'solid', '#ABABAB'],
     borderRadius: '0.25rem',
-    boxShadow: '0 1px 2px 0 #a6a6a6',
+    boxShadow: '0px 0px 2px 0.2px rgba(0, 0, 0, 0.31)',
     fontSize: '1rem',
     cursor: 'pointer',
     padding: '0.4rem 0.8rem',
@@ -95,9 +95,9 @@ const useCommonStyles = createUseStyles({
   textInputDefault: {
     backgroundColor: '#fff',
     color: '#36454f',
-    border: '1px solid #a6a6a6',
+    border: ['0.6px', 'solid', '#ABABAB'],
+    outline: 'none',
     borderRadius: '0.25rem',
-    boxShadow: '0 1px 2px 0 #a6a6a6',
     padding: '0.25rem 0.5rem',
     fontSize: '1rem',
   },
@@ -122,7 +122,7 @@ const useLandingPageStyles = createUseStyles({
     width: '100%',
     margin: '3rem 0',
     border: 'none',
-    borderTop: '3px solid #ccc',
+    borderTop: [1, 'solid', '#E5E5E5'],
     textAlign: 'center',
     overflow: 'visible',
     height: '0.5rem',
@@ -130,9 +130,9 @@ const useLandingPageStyles = createUseStyles({
       display: 'inline-block',
       content: '"💡"',
       fontSize: '2rem',
-      padding: '0 0.25rem',
+      padding: '0 1rem',
       position: 'relative',
-      backgroundColor: '#fffafa',
+      backgroundColor: '#FEFEFE',
       top: '-1.5rem',
     }
   },
@@ -140,11 +140,12 @@ const useLandingPageStyles = createUseStyles({
     fontSize: '2.5rem',
     fontWeight: '1000',
     textAlign: 'center',
+    color: '#1f1f1fe4'
   },
   subheading: {
     fontSize: '1.5rem',
     fontWeight: '400',
-    opacity: '0.7',
+    opacity: '0.6',
     textAlign: 'center',
   }
 });
@@ -294,7 +295,7 @@ const useSprintPageStyles = createUseStyles({
 });
 
 export default useCommonStyles;
-export { 
+export {
   useLandingPageStyles,
   useAuthPageStyles,
   useHomePageStyles,

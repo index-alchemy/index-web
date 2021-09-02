@@ -22,7 +22,29 @@
 
 .ais-SearchBox.searchBox {
   padding-top: 1em;
-  padding-bottom: 0em; 
+  padding-bottom: 0em;
+  box-shadow: none;
+  outline: none;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.ais-SearchBox-input {
+  outline: none!important;
+  box-shadow: none;
+  border: 0.6px solid #ababab;
+  color: #ababab;
+  caret-color: #ababab;
+  width: 100%;
+}
+
+.ais-SearchBox-form:before {
+  caret-color: #ababab;
+  color: #ababab;
+}
+
+.ais-SearchBox-input::placeholder  {
+  color: #ababab;
 }
 
 .ais-Pagination {
@@ -45,3 +67,18 @@
   font-size: 2em;
 }
 
+.ais-Hits-item {
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.ais-Hits-item:first-of-type {
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.ais-Hits-item h4 {
+  font-weight: 500;
+  color: #1f1f1fe4;
+}

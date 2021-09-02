@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
   header: {
     height: '6rem',
     backgroundColor: '#fff',
-    padding: '1rem',
+    padding: '1rem 2rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
     },
     '& a': {
       textDecoration: 'none',
-      color: 'black'
+      color: '#1f1f1fe4'
     }
   },
   headerNav: {
@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
     gap: '1rem',
     '& > *': {
-      color: '#36454f',
+      color: '#696969',
       fontWeight: '500'
     }
   }
@@ -45,7 +45,7 @@ export default function Header() {
       <h3><Link to="/">Index 📚</Link></h3>
 
       <nav className={classes.headerNav}>
-        {Boolean(session) && pathname !== '/home' 
+        {Boolean(session) && pathname !== '/home'
           && <Link to="/home">home</Link>
         }
         {pathname !== '/auth' && <AuthButton
