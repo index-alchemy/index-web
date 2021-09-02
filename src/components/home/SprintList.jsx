@@ -4,16 +4,9 @@ import SprintItem from './SprintItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCohorts from '../../state/useCohorts.js';
 import cohortNames from '../../cohorts.json';
+import useCommonStyles from '../../styles/useStyles';
 
 const useStyles = createUseStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-  },
   cohortSprints: {
     display: 'flex',
     flexDirection: 'column',
@@ -55,6 +48,7 @@ const useStyles = createUseStyles({
 
 const SprintList = () => {
 
+  const commonStyles = useCommonStyles();
   const classes = useStyles();
 
   const { cohorts } = useCohorts();
@@ -88,7 +82,7 @@ const SprintList = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={commonStyles.page}>
       <h2 className={classes.sprintPageTitle}>Sprints 🏃</h2>
       <div className={classes.cohortList}>
 

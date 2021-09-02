@@ -5,17 +5,9 @@ import PitchItem from './PitchItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useSprint } from '../../state/useSprint.js';
 import { relocateItemInArray } from '../../utils/utils.js';
+import useCommonStyles from '../../styles/useStyles';
 
 const useStyles = createUseStyles({
-  sprintPage: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    padding: '1rem',
-  },
   pitchList: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,6 +24,7 @@ const useStyles = createUseStyles({
 
 const SprintPage = () => {
   const classes = useStyles();
+  const commonStyles = useCommonStyles();
 
   const params = useParams();
   const { session, isAdmin } = useSession();
@@ -58,8 +51,10 @@ const SprintPage = () => {
     updatePrefs(session.id, newPrefs);
   };
 
+  console.log(sprint);
+
   return <>
-    <div className={classes.sprintPage}>
+    <div className={commonStyles.page}>
       {loading && !Boolean(sprint)
         ? <span>loading...</span>
         : <>
