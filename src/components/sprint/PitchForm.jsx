@@ -29,7 +29,7 @@ const PitchForm = ({ sprintId }) => {
       />
 
       <button
-        className={commonStyles.buttonDefault}
+        className={commonStyles.buttonPrimary}
       >submit pitch</button>
     </form>
   );

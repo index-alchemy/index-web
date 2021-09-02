@@ -13,8 +13,10 @@ const PitchPage = () => {
       {loading
         ? <div>Loading...</div>
         : <>
-          <h1>{pitch.pitch}</h1>
-          <span>{pitch.description}</span>
+          <h2>{pitch.pitch}</h2>
+          <section>
+            <span>{pitch.description}</span>
+          </section>
         </>}
     </div>
   </>;
