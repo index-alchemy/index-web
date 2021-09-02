@@ -1,65 +1,11 @@
 import React from 'react';
 import cohorts from '../../cohorts.json';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
-import { createUseStyles } from 'react-jss';
-
-const useStyles = createUseStyles({
-  authPage: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '90vh',
-    color: '#1F1F1F'
-  },
-  authForm: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.25rem',
-    width: '20rem',
-    padding: '1rem',
-    background: 'none',
-    border: [0.5, 'solid', '#ABABAB'],
-    borderRadius: '0.5rem',
-    boxShadow: '0 0 0.25rem #0003'
-  },
-  authToggle: {
-    cursor: 'pointer',
-    color: '#46a',
-    fontWeight: '400',
-    fontSize: '0.8rem',
-  },
-  authButton: {
-    marginTop: '0.7rem',
-    marginBottom: '0.7rem',
-    backgroundColor: '#F9F9FB',
-    outline: 'none',
-    border: [0.5, 'solid', '#ABABAB'],
-    borderRadius: '2px',
-    padding: '2px 8px',
-    fontSize: '0.8rem',
-    color: '#696969',
-    cursor: 'pointer',
-    boxShadow: '0 0 0.1rem #0003'
-  },
-  authLogOutButton: {
-    marginTop: 0,
-    marginBottom: '0.7rem',
-    backgroundColor: '#F9F9FB',
-    outline: 'none',
-    border: [0.5, 'solid', '#ABABAB'],
-    borderRadius: '2px',
-    padding: '2px 8px',
-    fontSize: '0.8rem',
-    color: '#696969',
-    cursor: 'pointer',
-    boxShadow: '0 0 0.1rem #0003'
-  }
-});
+import useCommonStyles, { useAuthPageStyles } from '../../styles/useStyles';
 
 const Auth = () => {
-  const classes = useStyles();
+  const styles = useAuthPageStyles();
+  const commonStyles = useCommonStyles();
 
   const { loading, session } = useSession();
   const { signUp, logIn, logOut } = useAuthActions();
@@ -71,7 +17,7 @@ const Auth = () => {
 
     const { email, password, name, cohort, ta } = e.target;
     
-    // decide whether to sign up or log in
+    // to sign up or log in ?
     const action = accountExists ? logIn : signUp;
     action({
       email: email.value,
@@ -87,13 +33,14 @@ const Auth = () => {
     logOut();
   };
 
-  return <div className={classes.authPage}>
+  return <div className={commonStyles.page}>
     <h1>Index 📚</h1>
     <form
-      className={classes.authForm}
+      className={styles.authForm}
       onSubmit={handleSubmit}
     >
       <input 
+        className={commonStyles.textInputDefault}
         name="email" 
         placeholder="email" 
         type="text" 
@@ -102,33 +49,43 @@ const Auth = () => {
       />
       {!accountExists && <>
         <input 
+          className={commonStyles.textInputDefault}
           name="name" 
           placeholder="name" 
           type="text" 
         />
-        <select defaultValue="21-03" name="cohort">
+        <select 
+          className={commonStyles.selectDefault}
+          defaultValue="21-03" 
+          name="cohort"
+        >
           {Object.keys(cohorts).map(cohort =>
             <option key={cohort} value={cohort}>{cohorts[cohort]}</option>)
           }
         </select>
-          <label>
-          Staff?
-            <input type="checkbox" name="ta"/>
-          </label>
+        <label className={styles.checkField}>
+          <span>Are you a staff member?</span>
+          <input type="checkbox" name="ta"/>
+        </label>
       </>}
-      {!Boolean(session) && <input name="password" placeholder="password" type="password"/>}
+      {!Boolean(session) && <input 
+        className={commonStyles.textInputDefault}
+        name="password" 
+        placeholder="password" 
+        type="password"
+      />}
 
       {loading
         ? <span>...</span>
         : <>
           {Boolean(session) 
-            ? <button className={classes.authLogOutButton} onClick={handleLogOut}>Log Out</button>
-            : <button className={classes.authButton} type="submit">{accountExists ? 'Log In' : 'Sign Up'}</button>
+            ? <button className={commonStyles.buttonPrimary} onClick={handleLogOut}>Log Out</button>
+            : <button className={commonStyles.buttonPrimary} type="submit">{accountExists ? 'Log In' : 'Sign Up'}</button>
           }
         </>
       }
       {!Boolean(session) && <span
-        className={classes.authToggle}
+        className={commonStyles.toggleText}
         onClick={() => setAccountExists(!accountExists)}
       >{accountExists ? 'Need' : 'Already have'} an account?</span>}
     </form>
