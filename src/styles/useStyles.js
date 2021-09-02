@@ -226,7 +226,6 @@ const useHomePageStyles = createUseStyles({
       backgroundColor: '#fff',
       border: [0.5, 'solid', '#a6a6a6'],
       borderRadius: '0.25rem',
-      padding: '0.5rem',
       cursor: 'pointer',
       position: 'relative',
       '&::after': {
@@ -249,6 +248,7 @@ const useHomePageStyles = createUseStyles({
         display: 'inline-block',
         width: '100%',
         height: '100%',
+        padding: '0.5rem',
         color: '#1e2421',
         textDecoration: 'none',
       },
