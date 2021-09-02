@@ -6,19 +6,26 @@ import './Search.css';
 
 const searchClient = algoliasearch('N82H923VC5', 'cfb98a5ccb9ee9a4c9ebe8f6892ae575');
 
-const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
+const CustomHighlight = connectHighlight(({ highlight, attribute, hit, isLink }) => {
   const parsedHit = highlight({
     highlightProperty: '_highlightResult',
     attribute,
     hit
   });
   return (
-    <h4>
+    <p>
       {attribute}:<br></br>
-      {parsedHit.map(
-        part => (part.isHighlighted ? <mark>{part.value}</mark> : part.value)
-      )}
-    </h4>
+      {isLink
+        ? <a href={hit[attribute]}>
+          {parsedHit.map(
+            part => (part.isHighlighted ? <mark>{part.value}</mark> : part.value)
+          )}
+        </a>
+        : parsedHit.map(
+          part => (part.isHighlighted ? <mark>{part.value}</mark> : part.value)
+        )
+      }
+    </p>
   );
 });
 
@@ -28,29 +35,27 @@ const Sidebar = () => (
   </div>
 );
 
-const Hit = ({ hit }) => (
-  <>
-    <p>
+const Hit = ({ hit }) => {
+
+  return <>
+    <div>
       <CustomHighlight attribute="Pitch" hit={hit} />
       <CustomHighlight attribute="Description" hit={hit} />
       <CustomHighlight attribute="Members" hit={hit} />
-      <CustomHighlight attribute="GitHub" hit={hit} />
+      <CustomHighlight attribute="GitHub" hit={hit} isLink={true}/>
       <CustomHighlight attribute="Sprint" hit={hit} />
-    </p>
-  </>
-);
+    </div>
+  </>;
+};
 
 const Search = () => (
   <div className="searchTool">
-    {/* <h1>Project pitches and voting, simplified.</h1>
-    <h2>Search past projects for inspiration, pitch project ideas,</h2>
-    <h2>join teams, and brainstorm on implementation, all in one app.</h2> */}
     <InstantSearch searchClient={searchClient} indexName="index_pitches">
       <SearchBox
         searchAsYouType={true}
         className="searchBox"
-        translations={{ placeholder: 'Search' }} />
-      {/* <h3>💡</h3> */}
+        translations={{ placeholder: 'Search' }} 
+      />
       <Hits hitComponent={Hit} />
       <Pagination
         showFirst={true}
