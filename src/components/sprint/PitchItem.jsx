@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import useCommonStyles from '../../styles/useStyles';
 
 const useStyles = createUseStyles({
   itemContainer: {
@@ -44,12 +45,14 @@ const useStyles = createUseStyles({
   }
 });
 
-const PitchItem = ({ pitch, rank, validCohort, handleReorder }) => {
+const PitchItem = ({ pitch, rank, showSpinner, handleReorder }) => {
   const classes = useStyles();
+  const commonStyles = useCommonStyles();
 
   return <>
     <li className={classes.itemContainer}>
-      {validCohort && <input 
+      {showSpinner && <input 
+        className={commonStyles.textInputDefault}
         type="number" 
         inputMode="numeric" 
         name={pitch.id}
@@ -66,9 +69,9 @@ const PitchItem = ({ pitch, rank, validCohort, handleReorder }) => {
 
 PitchItem.propTypes = {
   pitch: PropTypes.object.isRequired,
-  rank: PropTypes.number.isRequired,
-  validCohort: PropTypes.bool,
-  handleReorder: PropTypes.func.isRequired
+  showSpinner: PropTypes.bool,
+  rank: PropTypes.number,
+  handleReorder: PropTypes.func
 };
 
 export default PitchItem;
