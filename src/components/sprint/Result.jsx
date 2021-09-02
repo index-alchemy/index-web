@@ -1,10 +1,17 @@
 import React from 'react';
+import { useSprintPageStyles } from '../../styles/useStyles';
 
 const Result = ({ result }) => {
+
+  const styles = useSprintPageStyles();
+
   return <>
-    <ul className="Result">
+    <ul className={styles.result}>
       {Object.keys(result).map(pitch => <li>
-        <span>{pitch}: {result[pitch].join(', ')}</span>
+        <div>
+          <label>{pitch}</label>
+          {result[pitch].map(user => <span>{user}</span>)}
+        </div>
       </li>)}
     </ul>
   </>;
