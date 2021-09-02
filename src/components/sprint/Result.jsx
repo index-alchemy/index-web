@@ -2,11 +2,11 @@ import React from 'react';
 
 const Result = ({ result }) => {
   return <>
-    <div className="Result">
-      {Object.keys(result).map(pitch => `
-        ${pitch}: ${result[pitch].join(', ')}
-      `)}
-    </div>
+    <ul className="Result">
+      {Object.keys(result).map(pitch => <li>
+        <span>{pitch}: {result[pitch].join(', ')}</span>
+      </li>)}
+    </ul>
   </>;
 };
 

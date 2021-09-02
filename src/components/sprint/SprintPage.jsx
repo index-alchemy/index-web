@@ -6,6 +6,7 @@ import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useSprint } from '../../state/useSprint.js';
 import { relocateItemInArray } from '../../utils/utils.js';
 import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
+import Result from './Result';
 
 const SprintPage = () => {
   const styles = useSprintPageStyles();
@@ -42,7 +43,7 @@ const SprintPage = () => {
 
   return <>
     <div className={commonStyles.page}>
-      {loading && !Boolean(sprint)
+      {loading || (!Boolean(sprint))
         ? <span>loading...</span>
         : <>
           <h2>{sprint.name}</h2>
@@ -54,6 +55,10 @@ const SprintPage = () => {
             }
 
             {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
+          </section>
+
+          <section>
+            {sprint.result && <Result result={sprint.result} />}
           </section>
 
           <section>
