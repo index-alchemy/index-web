@@ -12,6 +12,7 @@ const CustomHighlight = connectHighlight(({ highlight, attribute, hit, isLink })
     attribute,
     hit
   });
+  
   return (
     <p>
       {attribute}:<br></br>
@@ -48,25 +49,31 @@ const Hit = ({ hit }) => {
   </>;
 };
 
-const Search = () => (
+const Search = ({ query, setQuery }) => (
   <div className="searchTool">
     <InstantSearch searchClient={searchClient} indexName="index_pitches">
       <SearchBox
         searchAsYouType={true}
         className="searchBox"
         translations={{ placeholder: 'Search' }} 
+        onChange={e => setQuery(e.target.value)}
       />
-      <Hits hitComponent={Hit} />
-      <Pagination
-        showFirst={true}
-        showLast={true}
-        showPrevious={true}
-        showNext={true}
-        totalPages={40} />
-      <Sidebar />
+
+      {query && <>
+        <Hits hitComponent={Hit} />
+
+        <Pagination
+          showFirst={true}
+          showLast={true}
+          showPrevious={true}
+          showNext={true}
+          totalPages={40} 
+        />
+
+        <Sidebar />
+      </>}
     </InstantSearch>
   </div>
 );
-
 
 export default Search;
