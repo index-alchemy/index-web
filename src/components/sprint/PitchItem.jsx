@@ -32,8 +32,15 @@ const useStyles = createUseStyles({
   },
   pitchTitle: {
     color: '#1f1f1f',
+    fontSize: '1.15rem',
     textDecoration: 'none',
     fontWeight: '600'
+  },
+  pitchDescription: {
+    display: '-webkit-box',
+    '-webkit-line-clamp': 3,
+    '-webkit-box-orient': 'vertical',
+    overflow: 'hidden'
   }
 });
 
