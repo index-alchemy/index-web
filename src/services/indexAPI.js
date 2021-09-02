@@ -2,7 +2,10 @@ const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1
 
 const GET = async route => {
   return await fetch(`${API}${route}`, { credentials: 'include' })
-    .then(res => res.json())
+    .then(res => {
+      console.log('response from', route, res);
+      return res.json();
+    })
     .catch(err => console.error(err))
   ;
 };
@@ -11,7 +14,11 @@ const fetchSprints = async () => await GET('/sprints');
 
 const fetchSprint = async id => await GET(`/sprints/${id}`);
 
+const fetchSprintWithResult = async (id, teams) => await GET(`/sprints/${id}/result?teams=${teams}`);
+
 const fetchPitches = async () => await GET('/pitches');
+
+const fetchPitchesLatest = async (days) => await GET(`/pitches?days=${days}`);
 
 const fetchPitchesBySprint = async id => await GET(`/sprints/${id}/pitches`);
 
@@ -35,6 +42,8 @@ const addPitch = async pitch => await POST('/pitches', pitch);
 
 const addPreference = async pref => await POST('/preferences', pref);
 
+const addSprint = async sprint => await POST('/sprints', sprint);
+
 const updatePreference = async pref => {
   return await fetch(`${API}/preferences/${pref.id}`, {
     method: 'PUT',
@@ -50,11 +59,14 @@ const updatePreference = async pref => {
 export { 
   fetchSprints, 
   fetchSprint, 
+  fetchSprintWithResult,
   fetchPitches,
+  fetchPitchesLatest,
   fetchPitchesBySprint, 
   fetchPitch, 
   fetchCommentsByPitch,
   addPitch,
   addPreference,
+  addSprint,
   updatePreference
 };

@@ -1,61 +1,15 @@
 import React, { useEffect } from 'react';
-import { createUseStyles } from 'react-jss';
 import SprintItem from './SprintItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCohorts from '../../state/useCohorts.js';
 import cohortNames from '../../cohorts.json';
-
-const useStyles = createUseStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-  },
-  cohortSprints: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    minWidth: 'calc(400px + 2.6rem)',
-    '@media (max-width: 500px)': {
-      minWidth: 'calc(300px + 2.6rem)',
-    },
-    height: '100%',
-    border: [0.5, 'solid', '#ABABAB'],
-    borderRadius: '0.5rem',
-    boxShadow: '0 0 0.25rem #0003',
-    marginBottom: '1rem',
-    padding: '0.8rem',
-  },
-  sprintList: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    justifyContent: 'center',
-    padding: '0',
-    width: '100%',
-    height: '100%'
-  },
-  cohort: {
-    margin: 0,
-    cursor: 'pointer'
-  },
-  cohortToggle: {
-    display: 'none',
-    '& + ul': { display: 'none' },
-    '&:checked + ul': { display: 'flex' },
-  }
-});
+import useCommonStyles, { useHomePageStyles } from '../../styles/useStyles';
+import SprintsForm from '../sprint/SprintsForm';
 
 const SprintList = () => {
 
-  const classes = useStyles();
+  const commonStyles = useCommonStyles();
+  const styles = useHomePageStyles();
 
   const { cohorts } = useCohorts();
   const { session, isAdmin } = useSession();
@@ -67,20 +21,24 @@ const SprintList = () => {
 
   const generateCohorts = cohorts => {
     return Object.keys(cohorts).reverse().map(cohort => <>
-      {Boolean(cohorts[cohort].reduce((acc, sprint) => acc + sprint.count, 0)) &&
-      <div className={classes.cohortSprints} key={cohort}>
+      {Boolean(cohorts[cohort].length) &&
+      <div className={styles.cohortItem} key={cohort}>
         <label htmlFor={`checkbox-${cohort}`}>
-          <h3 className={classes.cohort}>{cohortNames[cohort]}</h3>
+          <h4 className={styles.cohortName}>{cohortNames[cohort]}</h4>
         </label>
         <input 
           id={`checkbox-${cohort}`}
-          className={classes.cohortToggle} 
+          className={styles.sprintListToggle} 
           type="checkbox" 
           defaultChecked={session && cohort === session.cohort}
         />
-        <ul className={classes.sprintList}>
+        <ul className={styles.sprintList}>
           {cohorts[cohort].map(sprint =>
-            <SprintItem key={sprint.id} sprint={sprint}/>
+            <SprintItem 
+              key={sprint.id} 
+              sprint={sprint}
+              className={styles.sprintItem}
+            />
           )}
         </ul>
       </div>}</>
@@ -88,15 +46,19 @@ const SprintList = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <h2 className={classes.sprintPageTitle}>Sprints 🏃</h2>
-      <div className={classes.cohortList}>
+    <div className={commonStyles.page}>
+      <h2>Sprints 🏃</h2>
 
+      <section className={styles.cohortList}>
         {generateCohorts(cohorts)}
+      </section>
 
-      </div>
-
-      {isAdmin && <button>create new sprint</button>}
+      {isAdmin && <>
+        <hr/>
+        <section>
+          <SprintsForm />
+        </section>
+      </>}
     </div>
   );
 };

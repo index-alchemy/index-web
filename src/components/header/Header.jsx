@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import AuthButton from './AuthButton';
+import { useAuthActions, useSession } from '../../state/SessionProvider';
 
 const useStyles = createUseStyles({
   header: {
-    height: '100px',
-    padding: '1rem',
+    height: '6rem',
+    backgroundColor: '#fff',
+    padding: '1rem 2rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -15,15 +18,15 @@ const useStyles = createUseStyles({
     },
     '& a': {
       textDecoration: 'none',
-      color: 'black'
+      color: '#1f1f1fe4'
     }
   },
   headerNav: {
     display: 'flex',
     alignItems: 'center',
-    '& a': {
-      marginRight: '1rem',
-      color: '#1f1f1f',
+    gap: '1rem',
+    '& > *': {
+      color: '#696969',
       fontWeight: '500'
     }
   }
@@ -32,13 +35,26 @@ const useStyles = createUseStyles({
 export default function Header() {
   const classes = useStyles();
 
+  const { loading, session } = useSession();
+  const { logOut } = useAuthActions();
+  const history = useHistory();
+  const { pathname } = useLocation();
+
   return (
     <header className={classes.header}>
       <h3><Link to="/">Index 📚</Link></h3>
-      <div className={classes.headerNav}>
-        <Link to="/home">Sprints</Link>
-        <Link to="/search">Search</Link>
-      </div>
+
+      <nav className={classes.headerNav}>
+        {Boolean(session) && pathname !== '/home'
+          && <Link to="/home">Home</Link>
+        }
+        {pathname !== '/auth' && <AuthButton
+          loading={loading}
+          session={session}
+          logOut={logOut}
+          history={history}
+        />}
+      </nav>
     </header>
   );
 };

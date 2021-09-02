@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchSprint, updatePreference, addPreference } from '../services/indexAPI.js';
+import { fetchSprint, updatePreference, addPreference, fetchSprintWithResult } from '../services/indexAPI.js';
 import { shuffleArray } from '../utils/utils.js';
 
 export const useSprint = id => {
@@ -17,11 +17,25 @@ export const useSprint = id => {
 
   const initializePrefs = userId => {
     // initialize prefs
+    const pitchIds = sprint.pitches.map(pitch => pitch.id);
     const match = sprint.preferences.find(p => p.userId === userId);
-    setPrefs(match 
+
+    let newPrefs = match 
       ? match.preference
       : shuffleArray(sprint.pitches.map(p => p.id))
-    );
+    ;
+    newPrefs = newPrefs.concat(pitchIds.filter(id => !newPrefs.includes(id)));
+
+    setPrefs(newPrefs);
+  };
+
+  const updateResult = (teams, id) => {
+    setLoading(true);
+    fetchSprintWithResult(id, teams)
+      .then(setSprint)
+      .finally(() => setLoading(false))
+      .catch(err => console.error(err))
+    ;
   };
 
   const updatePrefs = (userId, preference) => {
@@ -55,5 +69,5 @@ export const useSprint = id => {
     }
   };
 
-  return { loading, sprint, prefs, initializePrefs, updatePrefs };
+  return { loading, sprint, prefs, initializePrefs, updatePrefs, updateResult };
 }
