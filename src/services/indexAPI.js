@@ -40,6 +40,8 @@ const addPitch = async pitch => await POST('/pitches', pitch);
 
 const addPreference = async pref => await POST('/preferences', pref);
 
+const addSprint = async sprint => await POST('/sprints', sprint);
+
 const updatePreference = async pref => {
   return await fetch(`${API}/preferences/${pref.id}`, {
     method: 'PUT',
@@ -62,5 +64,6 @@ export {
   fetchCommentsByPitch,
   addPitch,
   addPreference,
+  addSprint,
   updatePreference
 };
