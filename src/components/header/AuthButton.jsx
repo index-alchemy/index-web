@@ -9,16 +9,16 @@ const AuthButton = ({ loading, session, logOut, history }) => {
     {loading
       ? <span>...</span>
       : Boolean(session)
-        ? <button 
+        ? <button
           className={commonStyles.buttonDefault}
           onClick={() => {
             logOut().then(history.push('/'));
           }}
         >logout</button>
-        : <button 
+        : <button
           className={commonStyles.buttonDefault}
           onClick={() => history.push('/auth')}
-        >signon</button>
+        >Log In</button>
     }
   </>;
 };
