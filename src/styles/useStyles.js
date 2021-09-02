@@ -147,7 +147,18 @@ const useLandingPageStyles = createUseStyles({
     fontSize: '1.5rem',
     fontWeight: '400',
     opacity: '0.6',
-    textAlign: 'center',
+    textAlign: 'center'
+  },
+  recentPitches: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > h4': {
+      opacity: '0.8',
+      fontSize: '1.15rem',
+      fontWeight: '600',
+      margin: 0
+    }
   }
 });
 
