@@ -14,7 +14,7 @@ const AuthButton = ({ loading, session, logOut, history }) => {
           onClick={() => {
             logOut().then(history.push('/'));
           }}
-        >logout</button>
+        >Log Out</button>
         : <button
           className={commonStyles.buttonDefault}
           onClick={() => history.push('/auth')}

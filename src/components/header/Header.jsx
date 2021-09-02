@@ -46,7 +46,7 @@ export default function Header() {
 
       <nav className={classes.headerNav}>
         {Boolean(session) && pathname !== '/home'
-          && <Link to="/home">home</Link>
+          && <Link to="/home">Home</Link>
         }
         {pathname !== '/auth' && <AuthButton
           loading={loading}

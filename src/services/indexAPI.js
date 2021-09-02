@@ -18,6 +18,8 @@ const fetchSprintWithResult = async (id, teams) => await GET(`/sprints/${id}/res
 
 const fetchPitches = async () => await GET('/pitches');
 
+const fetchPitchesLatest = async (days) => await GET(`/pitches?days=${days}`);
+
 const fetchPitchesBySprint = async id => await GET(`/sprints/${id}/pitches`);
 
 const fetchPitch = async id => await GET(`/pitches/${id}`);
@@ -59,6 +61,7 @@ export {
   fetchSprint, 
   fetchSprintWithResult,
   fetchPitches,
+  fetchPitchesLatest,
   fetchPitchesBySprint, 
   fetchPitch, 
   fetchCommentsByPitch,
