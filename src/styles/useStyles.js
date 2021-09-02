@@ -19,6 +19,7 @@ const useCommonStyles = createUseStyles({
     width: '100%',
     height: '100%',
     padding: '1rem',
+    paddingBottom: '2rem',
     gap: '1rem',
     '& > *': {
       width: '50%',
@@ -289,6 +290,43 @@ const useSprintPageStyles = createUseStyles({
       },
       '& button': {
         marginTop: '2rem'
+      }
+    }
+  },
+  result: {
+    width: '100%',
+    listStyle: 'none',
+    padding: 0,
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.5rem 1rem',
+    justifyContent: 'left',
+    '& > li': {
+      // fontSize: '1rem',
+      // border: '1px solid #a6a6a6',
+      // borderRadius: '0.25rem',
+      // boxShadow: '0 1px 2px 0 #a6a6a6',
+      padding: '0.5rem',
+      '& > div': {
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: '0.25rem',
+        '& > label': {
+          fontWeight: '600',
+          '&:after': { content: '":"' }
+        },
+        '& > span': {
+          maxWidth: '12rem',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          backgroundColor: '#fff',
+          border: '1px solid #a6a6a6',
+          borderRadius: '0.25rem',
+          padding: '0.15rem 0.25rem',
+          textAlign: 'center',
+        }
       }
     }
   }

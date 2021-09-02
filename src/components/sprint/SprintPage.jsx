@@ -48,17 +48,24 @@ const SprintPage = () => {
         : <>
           <h2>{sprint.name}</h2>
 
+          {sprint.result && <>
+            <section>
+              {sprint.result && <Result result={sprint.result} />}
+            </section>
+
+            <hr/>
+          </>}
+
           <section>
             {sprint.preferences.length === 1
               ? <span>{sprint.preferences.length} student has voted</span>
               : <span>{sprint.preferences.length} students have voted</span>
             }
 
-            {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
-          </section>
-
-          <section>
-            {sprint.result && <Result result={sprint.result} />}
+            {isAdmin && <button 
+              onClick={() => updateResult(4, params.id)}
+              className={commonStyles.buttonPrimary}
+            >end pitches</button>}
           </section>
 
           <section>
