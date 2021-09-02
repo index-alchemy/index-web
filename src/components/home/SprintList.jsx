@@ -4,6 +4,7 @@ import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCohorts from '../../state/useCohorts.js';
 import cohortNames from '../../cohorts.json';
 import useCommonStyles, { useHomePageStyles } from '../../styles/useStyles';
+import SprintsForm from '../sprint/SprintsForm';
 
 const SprintList = () => {
 
@@ -20,7 +21,7 @@ const SprintList = () => {
 
   const generateCohorts = cohorts => {
     return Object.keys(cohorts).reverse().map(cohort => <>
-      {Boolean(cohorts[cohort].reduce((acc, sprint) => acc + sprint.count, 0)) &&
+      {Boolean(cohorts[cohort].length) &&
       <div className={styles.cohortItem} key={cohort}>
         <label htmlFor={`checkbox-${cohort}`}>
           <h4 className={styles.cohortName}>{cohortNames[cohort]}</h4>
@@ -55,9 +56,7 @@ const SprintList = () => {
       {isAdmin && <>
         <hr/>
         <section>
-          <button 
-            className={commonStyles.buttonDefault}
-          >create new sprint</button>
+          <SprintsForm />
         </section>
       </>}
     </div>
