@@ -1,30 +1,17 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { createUseStyles } from 'react-jss';
+import { useParams } from 'react-router-dom';
 import PitchItem from './PitchItem';
+import PitchForm from './PitchForm';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useSprint } from '../../state/useSprint.js';
 import { relocateItemInArray } from '../../utils/utils.js';
-import useCommonStyles from '../../styles/useStyles';
-
-const useStyles = createUseStyles({
-  pitchList: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'calc(400px + 2.6rem)',
-    '@media (max-width: 500px)': {
-      width: 'calc(300px + 2.6rem)'
-    },
-    height: '100%',
-    padding: '0.8rem',
-  }
-});
+import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
 
 const SprintPage = () => {
-  const classes = useStyles();
+  const styles = useSprintPageStyles();
   const commonStyles = useCommonStyles();
+  
+  const [showPitchForm, setShowPitchForm] = React.useState(false);
 
   const params = useParams();
   const { session, isAdmin } = useSession();
@@ -58,31 +45,43 @@ const SprintPage = () => {
       {loading && !Boolean(sprint)
         ? <span>loading...</span>
         : <>
-          <h1>{sprint.name}</h1>
-          {sprint.preferences.length === 1
-            ? <span>{sprint.preferences.length} student has voted</span>
-            : <span>{sprint.preferences.length} students have voted</span>
+          <h2>{sprint.name}</h2>
+
+          <section>
+            {sprint.preferences.length === 1
+              ? <span>{sprint.preferences.length} student has voted</span>
+              : <span>{sprint.preferences.length} students have voted</span>
+            }
+
+            {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
+          </section>
+
+          <section>
+            <ul className={styles.pitchList}>
+              {sprint.pitches.map(pitch =>
+                <PitchItem
+                  key={pitch.id}
+                  pitch={pitch}
+                  validCohort={Boolean(session)
+                    && session.cohort === sprint.cohort
+                    && !isAdmin
+                  }
+                  rank={prefs.indexOf(pitch.id)}
+                  handleReorder={handleReorder}
+                />
+              )}
+            </ul>
+          </section>
+
+          {showPitchForm 
+            ? <section className={styles.addPitchForm}>
+                <PitchForm sprintId={params.id}/>
+              </section>
+            : <section><span 
+              className={commonStyles.toggleText}
+              onClick={() => setShowPitchForm(true)}
+            >Add a Pitch</span></section>
           }
-
-          {isAdmin && <button onClick={() => updateResult(4, params.id)}>end pitches</button>}
-
-          <ul className={classes.pitchList}>
-            {sprint.pitches.map(pitch =>
-              <PitchItem 
-                key={pitch.id} 
-                pitch={pitch} 
-                validCohort={Boolean(session) 
-                  && session.cohort === sprint.cohort
-                  && !isAdmin
-                }
-                rank={prefs.indexOf(pitch.id)} 
-                handleReorder={handleReorder}
-              />
-            )}
-          </ul>
-
-          <Link to={{ pathname: '/add-pitch', state: { sprintId: sprint.id } }}>Add a Pitch</Link>
-
         </>
       }
     </div>

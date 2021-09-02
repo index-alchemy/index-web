@@ -1,14 +1,17 @@
 import React from 'react';
 import useAddPitch from '../../state/useAddPitch.js';
+import useCommonStyles from '../../styles/useStyles.js';
 
-const PitchForm = (props) => {
+const PitchForm = ({ sprintId }) => {
+
+  const commonStyles = useCommonStyles();
 
   const { pitch, description, handleSubmit, handleChange } = useAddPitch();
-  const { sprintId } = props.location.state;
 
   return (
     <form onSubmit={(e) => handleSubmit(e, sprintId)}>
       <input 
+        className={commonStyles.textInputDefault}
         required
         name='pitch'
         value={pitch}
@@ -17,14 +20,17 @@ const PitchForm = (props) => {
       />
 
       <textarea
+        className={commonStyles.textInputDefault}
         required
         name='description'
         value={description}
         placeholder='pitch description'
         onChange={handleChange}
-        />
+      />
 
-      <button>submit pitch</button>
+      <button
+        className={commonStyles.buttonDefault}
+      >submit pitch</button>
     </form>
   );
 };
