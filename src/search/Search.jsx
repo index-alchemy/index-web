@@ -42,15 +42,15 @@ const Hit = ({ hit }) => (
 
 const Search = () => (
   <div className="searchTool">
-    <h1>Project pitches and voting, simplified.</h1>
+    {/* <h1>Project pitches and voting, simplified.</h1>
     <h2>Search past projects for inspiration, pitch project ideas,</h2>
-    <h2>join teams, and brainstorm on implementation, all in one app.</h2>
+    <h2>join teams, and brainstorm on implementation, all in one app.</h2> */}
     <InstantSearch searchClient={searchClient} indexName="index_pitches">
       <SearchBox
         searchAsYouType={true}
         className="searchBox"
         translations={{ placeholder: 'Search' }} />
-      <h3>💡</h3>
+      {/* <h3>💡</h3> */}
       <Hits hitComponent={Hit} />
       <Pagination
         showFirst={true}
