@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
+import './styles/style.css';
 import App from './components/app/App';
 import { SessionProvider } from './state/SessionProvider';
 
