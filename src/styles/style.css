@@ -1,13 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  font-family: 'Inter', Helvetica, sans-serif;
-  background-color: #FEFEFE;
+html {
+  /* culi's cool colors (ignore this) */
+  --color-snow: #fffafa;          /* background */
+  --color-quicksilver: #a6a6a6;   /* border, shadow */
+  --color-ivory: #64645e;
+  --color-charcoal: #36454f;      /* text-input */
+  --color-feldgrau: #1e2421;      /* text */
+  --color-bluetiful: #00a1ff;     /* links */
 }
+
+html {
+  --color-bg: #F9F9FB;
+  --color-bg-button: transparent;
+  --color-bg-header: #fff;
+  --color-bg-input: #fff;
+  --color-bg-select: #0001;
+  --color-border: #ababab;
+  --color-fg: #fff1;
+  --color-hr: #e5e5e5;
+  --color-shadow: #0003;
+  --color-text: #696969;
+  --color-text-input: #40454f;
+  --color-text-button: var(--color-text-input);
+  --color-text-title: #1f1f1fe4;
+  --color-text-secondary: #3c69e7;
+
+  --border: 0.6px solid var(--color-border);
+  --break: 2px solid var(--color-hr);
+  --radius-big: 0.5rem;
+  --radius: 0.25rem;
+  --radius-small: 0.15rem;
+  --box-shadow: 0 0 2px 0 var(--color-shadow);
+  --box-shadow-big: 0 0 0.25rem 0 var(--color-shadow);
+  --box-shadow-hover: 0 1px 10px 0 var(--color-shadow);
+}
+
+/*
+=================
+=== RESET CSS ===
+=================
+*/
 
 *, ::before, ::after {
   box-sizing: border-box;
@@ -16,4 +49,79 @@ body {
 ul, ol {
   list-style: none;
   padding: 0;
+}
+
+/*
+========================
+=== DEFAULT STYLINGS ===
+========================
+buttons, inputs, selects, etc
+*/
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+
+button {
+  background: var(--color-bg-button);
+  color: var(--color-text-button);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  display: inline-block;
+  position: relative;
+}
+
+button::after {
+  box-shadow: var(--box-shadow-hover);
+  display: inline-block;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+button:hover::after { opacity: 1; }
+
+input, textarea {
+  background: var(--color-bg-input);
+  color: var(--color-text-input);
+  border: var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+input[type="number"] { width: 3rem; }
+
+select {
+  background: var(--color-bg-select);
+  color: var(--color-text-input);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  color: var(--color-text-title);
 }

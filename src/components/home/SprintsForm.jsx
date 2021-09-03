@@ -21,12 +21,9 @@ const SprintsForm = () => {
 
   return (
     <form onSubmit={handleAddSprints}>
-    <input type="month" name="cohort"/>
-
-    <button type="submit">add a cohort</button>
+      <input type="month" name="cohort"/>
+      <button type="submit">add a cohort</button>
     </form>
-
-
   );
 
 };

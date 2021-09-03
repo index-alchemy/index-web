@@ -9,6 +9,7 @@ import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
 import Result from './Result';
 
 const SprintPage = () => {
+  
   const styles = useSprintPageStyles();
   const commonStyles = useCommonStyles();
   
@@ -39,7 +40,13 @@ const SprintPage = () => {
     updatePrefs(session.id, newPrefs);
   };
 
-  console.log(sprint);
+  const handleMakeTeams = e => {
+    e.preventDefault();
+
+    const teamSize = Number(e.target.teams.value) || 4;
+
+    updateResult(teamSize, params.id);
+  };
 
   return <>
     <div className={commonStyles.page}>
@@ -52,21 +59,22 @@ const SprintPage = () => {
             <section>
               {sprint.result && <Result result={sprint.result} />}
             </section>
-
-            <hr/>
           </>}
 
-          <section>
+          {isAdmin && <section className={commonStyles.adminArea}>
             {sprint.preferences.length === 1
               ? <span>{sprint.preferences.length} student has voted</span>
               : <span>{sprint.preferences.length} students have voted</span>
             }
 
-            {isAdmin && <button 
-              onClick={() => updateResult(4, params.id)}
-              className={commonStyles.buttonPrimary}
-            >end pitches</button>}
-          </section>
+            <form onSubmit={handleMakeTeams}>
+              <input name="teams" type="number" min="2" max={sprint.preferences.length} defaultValue={4}/>
+              <button
+                type="submit"
+                className={commonStyles.buttonPrimary}
+              >end pitches</button>
+            </form>
+          </section>}
 
           <section>
             <ul className={styles.pitchList}>
@@ -89,7 +97,7 @@ const SprintPage = () => {
             ? <section className={styles.addPitchForm}>
                 <PitchForm sprintId={params.id}/>
               </section>
-            : <section><span 
+            : !isAdmin && <section><span 
               className={commonStyles.toggleText}
               onClick={() => setShowPitchForm(true)}
             >Add a Pitch</span></section>
