@@ -1,9 +1,10 @@
 import React from 'react';
-import cohorts from '../../cohorts.json';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCommonStyles, { useAuthPageStyles } from '../../styles/useStyles';
+import parseCohort, { generateCohorts } from '../../utils/parseCohorts';
 
 const Auth = () => {
+
   const styles = useAuthPageStyles();
   const commonStyles = useCommonStyles();
 
@@ -40,7 +41,6 @@ const Auth = () => {
       onSubmit={handleSubmit}
     >
       <input 
-        className={commonStyles.textInputDefault}
         name="email" 
         placeholder="email" 
         type="text" 
@@ -49,18 +49,16 @@ const Auth = () => {
       />
       {!accountExists && <>
         <input 
-          className={commonStyles.textInputDefault}
           name="name" 
           placeholder="name" 
           type="text" 
         />
         <select 
-          className={commonStyles.selectDefault}
-          defaultValue="21-03" 
+          defaultValue="2021-03" 
           name="cohort"
         >
-          {Object.keys(cohorts).map(cohort =>
-            <option key={cohort} value={cohort}>{cohorts[cohort]}</option>)
+          {(generateCohorts()).map(cohort =>
+            <option key={cohort} value={cohort}>{parseCohort(cohort)}</option>)
           }
         </select>
         <label className={styles.checkField}>
@@ -69,7 +67,6 @@ const Auth = () => {
         </label>
       </>}
       {!Boolean(session) && <input 
-        className={commonStyles.textInputDefault}
         name="password" 
         placeholder="password" 
         type="password"

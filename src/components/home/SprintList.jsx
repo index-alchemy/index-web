@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import SprintItem from './SprintItem';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCohorts from '../../state/useCohorts.js';
-import cohortNames from '../../cohorts.json';
 import useCommonStyles, { useHomePageStyles } from '../../styles/useStyles';
-import SprintsForm from '../sprint/SprintsForm';
+import SprintsForm from './SprintsForm';
+import parseCohort from '../../utils/parseCohorts';
 
 const SprintList = () => {
 
@@ -24,7 +24,7 @@ const SprintList = () => {
       {Boolean(cohorts[cohort].length) &&
       <div className={styles.cohortItem} key={cohort}>
         <label htmlFor={`checkbox-${cohort}`}>
-          <h4 className={styles.cohortName}>{cohortNames[cohort]}</h4>
+          <h4 className={styles.cohortName}>{parseCohort(cohort)}</h4>
         </label>
         <input 
           id={`checkbox-${cohort}`}
@@ -49,16 +49,16 @@ const SprintList = () => {
     <div className={commonStyles.page}>
       <h2>Sprints 🏃</h2>
 
+      {isAdmin && <>
+        <section className={`${styles.sprintsForm} ${commonStyles.adminArea}`}>
+          <SprintsForm />
+        </section>
+      </>}
+
       <section className={styles.cohortList}>
         {generateCohorts(cohorts)}
       </section>
 
-      {isAdmin && <>
-        <hr/>
-        <section>
-          <SprintsForm />
-        </section>
-      </>}
     </div>
   );
 };

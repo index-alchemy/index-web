@@ -9,6 +9,7 @@ import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
 import Result from './Result';
 
 const SprintPage = () => {
+  
   const styles = useSprintPageStyles();
   const commonStyles = useCommonStyles();
   
@@ -39,8 +40,6 @@ const SprintPage = () => {
     updatePrefs(session.id, newPrefs);
   };
 
-  console.log(sprint);
-
   return <>
     <div className={commonStyles.page}>
       {loading || (!Boolean(sprint))
@@ -52,21 +51,19 @@ const SprintPage = () => {
             <section>
               {sprint.result && <Result result={sprint.result} />}
             </section>
-
-            <hr/>
           </>}
 
-          <section>
+          {isAdmin && <section className={commonStyles.adminArea}>
             {sprint.preferences.length === 1
               ? <span>{sprint.preferences.length} student has voted</span>
               : <span>{sprint.preferences.length} students have voted</span>
             }
 
-            {isAdmin && <button 
+            <button 
               onClick={() => updateResult(4, params.id)}
               className={commonStyles.buttonPrimary}
-            >end pitches</button>}
-          </section>
+            >end pitches</button>
+          </section>}
 
           <section>
             <ul className={styles.pitchList}>
@@ -89,7 +86,7 @@ const SprintPage = () => {
             ? <section className={styles.addPitchForm}>
                 <PitchForm sprintId={params.id}/>
               </section>
-            : <section><span 
+            : !isAdmin && <section><span 
               className={commonStyles.toggleText}
               onClick={() => setShowPitchForm(true)}
             >Add a Pitch</span></section>

@@ -1,67 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { createUseStyles } from 'react-jss';
-import useCommonStyles from '../../styles/useStyles';
-
-const useStyles = createUseStyles({
-  itemContainer: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: '0.5rem',
-    '& input': {
-      width: '3rem',
-      background: 'transparent',
-    }
-  },
-  pitchItem: {
-    listStyle: 'none',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    padding: '1rem',
-    border: [0.5, 'solid', '#ABABAB'],
-    borderRadius: '0.5rem',
-    boxShadow: '0 0 0.25rem #0003',
-    marginBottom: '1rem',
-  },
-  pitchTitle: {
-    color: '#1f1f1f',
-    fontSize: '1.15rem',
-    textDecoration: 'none',
-    fontWeight: '600'
-  },
-  pitchDescription: {
-    display: '-webkit-box',
-    '-webkit-line-clamp': 3,
-    '-webkit-box-orient': 'vertical',
-    overflow: 'hidden'
-  }
-});
+import { usePitchItemStyles } from '../../styles/useStyles';
 
 const PitchItem = ({ pitch, rank, showSpinner, handleReorder }) => {
-  const classes = useStyles();
-  const commonStyles = useCommonStyles();
+  const styles = usePitchItemStyles();
 
   return <>
-    <li className={classes.itemContainer}>
+    <li className={styles.pitchItem}>
       {showSpinner && <input 
-        className={commonStyles.textInputDefault}
         type="number" 
         inputMode="numeric" 
         name={pitch.id}
         value={rank + 1}
         onChange={handleReorder}
       />}
-      <div className={classes.pitchItem}>
-        <Link className={classes.pitchTitle} to={`/pitches/${pitch.id}`}>{pitch.pitch}</Link>
-        <span className={classes.pitchDescription}>{pitch.description}</span>
+      <div>
+        <Link 
+          to={`/pitches/${pitch.id}`}
+        >{pitch.pitch}</Link>
+
+        <span>{pitch.description}</span>
       </div>
     </li>
   </>;
