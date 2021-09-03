@@ -109,6 +109,8 @@ input, textarea {
   font-size: 1rem;
 }
 
+input[type="number"] { width: 3rem; }
+
 select {
   background: var(--color-bg-select);
   color: var(--color-text-input);
