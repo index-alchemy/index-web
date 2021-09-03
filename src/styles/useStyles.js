@@ -274,6 +274,7 @@ const useSprintPageStyles = createUseStyles({
     padding: 0,
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
     gap: '1rem',
     justifyContent: 'left',
     '& > li': {
