@@ -31,6 +31,15 @@ const useCommonStyles = createUseStyles({
     cursor: 'pointer',
     fontSize: '1rem',
     color: 'var(--color-text-secondary)'
+  },
+  adminArea: {
+    border: '0.15rem dotted var(--color-bg-button)',
+    borderRadius: 'var(--radius-big)',
+    padding: '1rem',
+    opacity: '0.5',
+    '&:hover': {
+      opacity: '1'
+    }
   }
 });
 
@@ -218,6 +227,14 @@ const useHomePageStyles = createUseStyles({
         float: 'right',
         fontWeight: '100'
       }
+    }
+  },
+  sprintsForm: {
+    '& form': {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: '1rem'
     }
   }
 });
