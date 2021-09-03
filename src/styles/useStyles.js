@@ -55,6 +55,7 @@ const useHeaderStyles = createUseStyles({
     height: '6rem',
     padding: '1rem 2rem',
     '& h3 button': {
+      bottom: '2px',
       border: 'none',
       boxShadow: 'none',
       background: 'none',
@@ -111,7 +112,7 @@ const useLandingPageStyles = createUseStyles({
       fontWeight: '600',
       margin: 0
     },
-    '& > ul': { 
+    '& > ul': {
       gap: '1rem',
       display: 'flex',
       flexDirection: 'column'
@@ -171,6 +172,7 @@ const useHomePageStyles = createUseStyles({
     padding: '1rem'
   },
   cohortName: {
+    color: 'var(--color-text-title-item)',
     fontSize: '1.15rem',
     cursor: 'pointer',
     margin: 0
@@ -309,7 +311,7 @@ const usePitchItemStyles = createUseStyles({
   pitchItem: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: '0.5rem',
     '& input': {
@@ -324,15 +326,19 @@ const usePitchItemStyles = createUseStyles({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      justifyContent: 'center',
       padding: '1rem',
+      gap: '0.5rem',
       '& > a': {
-        color: 'var(--color-text-title)',
+        color: 'var(--color-text-title-item)',
         fontSize: '1.15rem',
         textDecoration: 'none',
         fontWeight: '600'
       },
       '& > *:last-child': {
-        color: 'var(--color-text-input)',
+        textAlign: 'center',
+        color: 'var(--color-text-title-item)',
+        width: '100%',
         fontWeight: '420',
         opacity: 0.9,
         display: '-webkit-box',
