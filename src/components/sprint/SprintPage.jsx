@@ -40,6 +40,14 @@ const SprintPage = () => {
     updatePrefs(session.id, newPrefs);
   };
 
+  const handleMakeTeams = e => {
+    e.preventDefault();
+
+    const teamSize = Number(e.target.teams.value) || 4;
+
+    updateResult(teamSize, params.id);
+  };
+
   return <>
     <div className={commonStyles.page}>
       {loading || (!Boolean(sprint))
@@ -59,10 +67,13 @@ const SprintPage = () => {
               : <span>{sprint.preferences.length} students have voted</span>
             }
 
-            <button 
-              onClick={() => updateResult(4, params.id)}
-              className={commonStyles.buttonPrimary}
-            >end pitches</button>
+            <form onSubmit={handleMakeTeams}>
+              <input name="teams" type="number" min="2" max={sprint.preferences.length} defaultValue={4}/>
+              <button
+                type="submit"
+                className={commonStyles.buttonPrimary}
+              >end pitches</button>
+            </form>
           </section>}
 
           <section>
