@@ -4,6 +4,7 @@ import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCommonStyles, { useAuthPageStyles } from '../../styles/useStyles';
 
 const Auth = () => {
+
   const styles = useAuthPageStyles();
   const commonStyles = useCommonStyles();
 
@@ -40,7 +41,6 @@ const Auth = () => {
       onSubmit={handleSubmit}
     >
       <input 
-        className={commonStyles.textInputDefault}
         name="email" 
         placeholder="email" 
         type="text" 
@@ -49,13 +49,11 @@ const Auth = () => {
       />
       {!accountExists && <>
         <input 
-          className={commonStyles.textInputDefault}
           name="name" 
           placeholder="name" 
           type="text" 
         />
         <select 
-          className={commonStyles.selectDefault}
           defaultValue="21-03" 
           name="cohort"
         >
@@ -69,7 +67,6 @@ const Auth = () => {
         </label>
       </>}
       {!Boolean(session) && <input 
-        className={commonStyles.textInputDefault}
         name="password" 
         placeholder="password" 
         type="password"

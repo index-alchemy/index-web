@@ -10,8 +10,7 @@ const PitchForm = ({ sprintId }) => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e, sprintId)}>
-      <input 
-        className={commonStyles.textInputDefault}
+      <input
         required
         name='pitch'
         value={pitch}
@@ -20,7 +19,6 @@ const PitchForm = ({ sprintId }) => {
       />
 
       <textarea
-        className={commonStyles.textInputDefault}
         required
         name='description'
         value={description}

@@ -7,12 +7,10 @@ oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 const SprintItem = ({ sprint }) => {
 
   return <>
-    <li 
-      hidden={(
+    <li hidden={(
         !Boolean(sprint.count)
         && (new Date(sprint.createdAt) - oneYearAgo) < 0
-      )}
-    >
+    )}>
       <Link to={`/sprints/${sprint.id}`}>
         <span>{sprint.name}</span>
         <span>{sprint.count}</span>

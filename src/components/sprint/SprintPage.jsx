@@ -9,6 +9,7 @@ import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
 import Result from './Result';
 
 const SprintPage = () => {
+  
   const styles = useSprintPageStyles();
   const commonStyles = useCommonStyles();
   
@@ -38,8 +39,6 @@ const SprintPage = () => {
 
     updatePrefs(session.id, newPrefs);
   };
-
-  console.log(sprint);
 
   return <>
     <div className={commonStyles.page}>
