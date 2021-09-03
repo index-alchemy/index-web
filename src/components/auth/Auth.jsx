@@ -1,7 +1,7 @@
 import React from 'react';
-import cohorts from '../../cohorts.json';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import useCommonStyles, { useAuthPageStyles } from '../../styles/useStyles';
+import parseCohort, { generateCohorts } from '../../utils/parseCohorts';
 
 const Auth = () => {
 
@@ -54,11 +54,11 @@ const Auth = () => {
           type="text" 
         />
         <select 
-          defaultValue="21-03" 
+          defaultValue="2021-03" 
           name="cohort"
         >
-          {Object.keys(cohorts).map(cohort =>
-            <option key={cohort} value={cohort}>{cohorts[cohort]}</option>)
+          {(generateCohorts()).map(cohort =>
+            <option key={cohort} value={cohort}>{parseCohort(cohort)}</option>)
           }
         </select>
         <label className={styles.checkField}>
