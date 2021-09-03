@@ -34,6 +34,10 @@ html {
   --box-shadow: 0 0 2px 0 var(--color-shadow);
   --box-shadow-big: 0 0 0.25rem 0 var(--color-shadow);
   --box-shadow-hover: 0 1px 10px 0 var(--color-shadow);
+  --font: 'Inter', Helvetica, sans-serif;
+
+  --easter-egg: none;
+  --not-easter: flex;
 }
 
 /*
@@ -66,7 +70,7 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  font-family: 'Inter', Helvetica, sans-serif;
+  font-family: var(--font);
 }
 
 button {

@@ -30,7 +30,11 @@ const ThemeSwitcher = () => {
         '--radius-small': '0.15rem',
         '--box-shadow': '0 0 2px 0 var(--color-shadow)',
         '--box-shadow-big': '0 0 0.25rem 0 var(--color-shadow)',
-        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)'
+        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)',
+        '--font': '"Inter", Helvetica, sans-serif',
+
+        '--easter-egg': 'none',
+        '--not-easter': 'flex'
       }
     },
     {
@@ -59,7 +63,11 @@ const ThemeSwitcher = () => {
         '--radius-small': '0.15rem',
         '--box-shadow': '0 0 2px 0 var(--color-shadow)',
         '--box-shadow-big': '0 0 0.25rem 0 var(--color-shadow)',
-        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)'
+        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)',
+        '--font': '"Inter", Helvetica, sans-serif',
+
+        '--easter-egg': 'none',
+        '--not-easter': 'flex'
       }
     },
     {
@@ -88,7 +96,44 @@ const ThemeSwitcher = () => {
         '--radius-small': '0.15rem',
         '--box-shadow': '0 0 2px 0 var(--color-shadow)',
         '--box-shadow-big': '0 0 0.25rem 0 var(--color-shadow)',
-        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)'
+        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)',
+        '--font': '"Inter", Helvetica, sans-serif',
+
+        '--easter-egg': 'none',
+        '--not-easter': 'flex'
+      }
+    },
+    {
+      symbol: '🎨',
+      style: {
+        '--color-bg': '#8B8B8B',
+        '--color-bg-button': 'transparent',
+        '--color-bg-header': '#8B8B8B',
+        '--color-bg-input': '#fff6',
+        '--color-bg-select': '#0000',
+        '--color-border': '#B1D384',
+        '--color-fg': 'var(--color-bg-header)',
+        '--color-hr': '#e5e5e5',
+        '--color-shadow': '#0003',
+        '--color-text': '#FEFEFE',
+        '--color-text-input': '#FEFEFE',
+        '--color-text-button': '#B1D384',
+        '--color-text-title': '#424242',
+        '--color-text-title-item': 'var(--color-text-title)',
+        '--color-text-secondary': '#e32',
+
+        '--border': '0.6px solid var(--color-border)',
+        '--break': '2px solid var(--color-hr)',
+        '--radius-big': '0.5rem',
+        '--radius': '0.25rem',
+        '--radius-small': '0.15rem',
+        '--box-shadow': '0 0 2px 0 var(--color-shadow)',
+        '--box-shadow-big': '0 0 0.25rem 0 var(--color-shadow)',
+        '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)',
+        '--font': '"Times New Roman", Times, serif',
+
+        '--easter-egg': 'flex',
+        '--not-easter': 'none'
       }
     },
   ];

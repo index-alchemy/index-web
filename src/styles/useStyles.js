@@ -74,6 +74,14 @@ const useHeaderStyles = createUseStyles({
 });
 
 const useLandingPageStyles = createUseStyles({
+  easter: {
+    '& > section:first-of-type': {
+      display: 'var(--not-easter)'
+    },
+    '& > img:first-of-type': {
+      display: 'var(--easter-egg)'
+    }
+  },
   bulbBreak: {
     borderTop: 'var(--break)',
     width: '100%',
