@@ -20,8 +20,7 @@ const SprintList = () => {
   }, [session, verify]);
 
   const generateCohorts = cohorts => {
-    return Object.keys(cohorts).reverse().map(cohort => <>
-      {Boolean(cohorts[cohort].length) &&
+    return Object.keys(cohorts).filter(k => cohorts[k].length).map(cohort =>
       <div className={styles.cohortItem} key={cohort}>
         <label htmlFor={`checkbox-${cohort}`}>
           <h4 className={styles.cohortName}>{parseCohort(cohort)}</h4>
@@ -41,8 +40,8 @@ const SprintList = () => {
             />
           )}
         </ul>
-      </div>}</>
-    );
+      </div>
+    ).reverse();
   };
 
   return (
