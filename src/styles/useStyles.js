@@ -111,6 +111,23 @@ const useLandingPageStyles = createUseStyles({
     fontWeight: '250',
     textAlign: 'center'
   },
+  searchSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '& ul': {
+      gap: '1rem',
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    '& > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  },
   recentPitches: {
     display: 'flex',
     flexDirection: 'column',
@@ -118,12 +135,8 @@ const useLandingPageStyles = createUseStyles({
     '& > h4': {
       fontSize: '1.15rem',
       fontWeight: '600',
-      margin: 0
-    },
-    '& > ul': {
-      gap: '1rem',
-      display: 'flex',
-      flexDirection: 'column'
+      margin: 0,
+      marginTop: '1rem'
     }
   }
 });
@@ -343,9 +356,9 @@ const usePitchItemStyles = createUseStyles({
         textDecoration: 'none',
         fontWeight: '600'
       },
-      '& > *:last-child': {
+      '& > *:nth-child(2)': {
         textAlign: 'center',
-        color: 'var(--color-text-title-item)',
+        color: 'var(--color-text-input)',
         width: '100%',
         fontWeight: '420',
         opacity: 0.9,

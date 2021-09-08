@@ -13,7 +13,7 @@ export const useSprint = id => {
       .then(() => setLoading(false))
       .catch(err => console.error(err))
     ;
-  }, []);
+  }, [id]);
 
   const initializePrefs = userId => {
     // initialize prefs
