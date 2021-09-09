@@ -94,7 +94,7 @@ const ThemeSwitcher = () => {
         '--radius-big': '0.5rem',
         '--radius': '0.25rem',
         '--radius-small': '0.15rem',
-        '--box-shadow': '0 0 2px 0 var(--color-shadow)',
+        '--box-shadow': '0 0 0.25rem 0 var(--color-shadow)',
         '--box-shadow-big': '0 0 0.25rem 0 var(--color-shadow)',
         '--box-shadow-hover': '0 1px 10px 0 var(--color-shadow)',
         '--font': '"Inter", Helvetica, sans-serif',
