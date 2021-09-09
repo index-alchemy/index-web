@@ -229,12 +229,12 @@ const useHomePageStyles = createUseStyles({
         top: '0',
         left: '0',
         content: '""',
-        zIndex: '-1',
         width: '100%',
         height: '100%',
         position: 'absolute',
         opacity: '0',
         transition: 'opacity 0.2s',
+        zIndex: '-1'
       },
       '&:hover::after': {
         opacity: '1'
@@ -326,6 +326,19 @@ const useSprintPageStyles = createUseStyles({
         }
       }
     }
+  },
+  adminArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+    '& > form': {
+      color: 'var(--color-text-input)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem'
+    }
   }
 });
 
@@ -351,6 +364,7 @@ const usePitchItemStyles = createUseStyles({
       justifyContent: 'center',
       padding: '1rem',
       gap: '0.5rem',
+      textAlign: 'center',
       '& > a': {
         color: 'var(--color-text-title-item)',
         fontSize: '1.15rem',
@@ -358,7 +372,6 @@ const usePitchItemStyles = createUseStyles({
         fontWeight: '600'
       },
       '& > *:nth-child(2)': {
-        textAlign: 'center',
         color: 'var(--color-text-input)',
         width: '100%',
         fontWeight: '420',
