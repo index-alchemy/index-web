@@ -162,6 +162,7 @@ const useAuthPageStyles = createUseStyles({
   },
   checkField: {
     color: 'var(--color-text-input)',
+    cursor: 'pointer',
     padding: '0.2rem 0',
     fontSize: '1rem',
     display: 'flex',
