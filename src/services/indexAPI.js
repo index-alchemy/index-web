@@ -3,8 +3,8 @@ const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1
 const GET = async route => {
   return await fetch(`${API}${route}`, { credentials: 'include' })
     .then(res => {
-      console.log('response from', route, res);
-      return res.json();
+      if (process.env.REACT_APP_LOUD) console.log('response from', route, res);
+      return res.ok ? res.json() : null;
     })
     .catch(err => console.error(err))
   ;
@@ -56,6 +56,16 @@ const updatePreference = async pref => {
   ;
 };
 
+const deletePitch = async id => {
+  return await fetch(`${API}/pitches/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
+  ;
+};
+
 export { 
   fetchSprints, 
   fetchSprint, 
@@ -68,5 +78,6 @@ export {
   addPitch,
   addPreference,
   addSprint,
-  updatePreference
+  updatePreference,
+  deletePitch
 };
