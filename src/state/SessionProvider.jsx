@@ -13,7 +13,7 @@ const SessionProvider = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('Session change:', session);
+    if (process?.env.REACT_APP_LOUD) console.log('Session change:', session);
     if (session) setIsAdmin(!Boolean(session.cohort) || session.isAdmin);
   }, [session]);
 
