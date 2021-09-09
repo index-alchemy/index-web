@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import AuthButton from './AuthButton';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
@@ -9,9 +9,13 @@ export default function Header() {
   const styles = useHeaderStyles();
 
   const { loading, session } = useSession();
-  const { logOut } = useAuthActions();
+  const { logOut, verify } = useAuthActions();
   const history = useHistory();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (!session) verify();
+  }, [session, verify]);
 
   return (
     <header className={styles.header}>
