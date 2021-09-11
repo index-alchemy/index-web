@@ -5,7 +5,7 @@ import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useHeaderStyles } from '../../styles/useStyles';
 import ThemeSwitcher from './ThemeSwitcher';
 
-export default function Header() {
+const Header = () => {
   const styles = useHeaderStyles();
 
   const { loading, session } = useSession();
@@ -35,3 +35,5 @@ export default function Header() {
     </header>
   );
 };
+
+export default Header;
