@@ -69,7 +69,15 @@ const useHeaderStyles = createUseStyles({
       display: 'flex',
       alignItems: 'center',
       gap: '1rem',
-    }
+    },
+    '& nav button': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      '& svg': {
+        maxHeight: '1rem'
+      }
+    },
   }
 });
 
@@ -139,35 +147,6 @@ const useLandingPageStyles = createUseStyles({
       marginTop: '1rem'
     }
   }
-});
-
-const useAuthPageStyles = createUseStyles({
-  authForm: {
-    border: 'var(--border)',
-    borderRadius: 'var(--radius-big)',
-    boxShadow: 'var(--box-shadow-big)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '1rem 2rem',
-    background: 'none',
-    '& > *': {
-      width: '100%',
-    },
-    '& > button': {
-      marginTop: '2rem',
-      width: '100%',
-    }
-  },
-  checkField: {
-    color: 'var(--color-text-input)',
-    cursor: 'pointer',
-    padding: '0.2rem 0',
-    fontSize: '1rem',
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
 });
 
 const useHomePageStyles = createUseStyles({
@@ -389,7 +368,6 @@ export default useCommonStyles;
 export {
   useHeaderStyles,
   useLandingPageStyles,
-  useAuthPageStyles,
   useHomePageStyles,
   useSprintPageStyles,
   usePitchItemStyles
