@@ -20,7 +20,7 @@ const request = async (method, url, body = null) => {
 
 const verify = async () => 
   await fetch(`${API}/auth/verify`, { credentials: 'include' })
-    .then(res => res.ok)
+    .then(res => res.json())
     .catch(err => console.error(err))
 ;
 
@@ -28,4 +28,4 @@ const logOut = async () =>
   await request('GET', '/auth/logout')
 ;
 
-export { signUp, logIn, verify, logOut };
+export { verify, logOut };
