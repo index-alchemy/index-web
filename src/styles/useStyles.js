@@ -69,11 +69,27 @@ const useHeaderStyles = createUseStyles({
       display: 'flex',
       alignItems: 'center',
       gap: '1rem',
-    }
+    },
+    '& nav button': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      '& svg': {
+        maxHeight: '1rem'
+      }
+    },
   }
 });
 
 const useLandingPageStyles = createUseStyles({
+  easter: {
+    '& > section:first-of-type': {
+      display: 'var(--not-easter)'
+    },
+    '& > img:first-of-type': {
+      display: 'var(--easter-egg)'
+    }
+  },
   bulbBreak: {
     borderTop: 'var(--break)',
     width: '100%',
@@ -103,6 +119,23 @@ const useLandingPageStyles = createUseStyles({
     fontWeight: '250',
     textAlign: 'center'
   },
+  searchSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '& ul': {
+      gap: '1rem',
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    '& > div': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  },
   recentPitches: {
     display: 'flex',
     flexDirection: 'column',
@@ -110,42 +143,10 @@ const useLandingPageStyles = createUseStyles({
     '& > h4': {
       fontSize: '1.15rem',
       fontWeight: '600',
-      margin: 0
-    },
-    '& > ul': {
-      gap: '1rem',
-      display: 'flex',
-      flexDirection: 'column'
+      margin: 0,
+      marginTop: '1rem'
     }
   }
-});
-
-const useAuthPageStyles = createUseStyles({
-  authForm: {
-    border: 'var(--border)',
-    borderRadius: 'var(--radius-big)',
-    boxShadow: 'var(--box-shadow-big)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '1rem 2rem',
-    background: 'none',
-    '& > *': {
-      width: '100%',
-    },
-    '& > button': {
-      marginTop: '2rem',
-      width: '100%',
-    }
-  },
-  checkField: {
-    color: 'var(--color-text-input)',
-    padding: '0.2rem 0',
-    fontSize: '1rem',
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
 });
 
 const useHomePageStyles = createUseStyles({
@@ -207,12 +208,12 @@ const useHomePageStyles = createUseStyles({
         top: '0',
         left: '0',
         content: '""',
-        zIndex: '-1',
         width: '100%',
         height: '100%',
         position: 'absolute',
         opacity: '0',
         transition: 'opacity 0.2s',
+        zIndex: '-1'
       },
       '&:hover::after': {
         opacity: '1'
@@ -304,6 +305,19 @@ const useSprintPageStyles = createUseStyles({
         }
       }
     }
+  },
+  adminArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+    '& > form': {
+      color: 'var(--color-text-input)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem'
+    }
   }
 });
 
@@ -329,15 +343,15 @@ const usePitchItemStyles = createUseStyles({
       justifyContent: 'center',
       padding: '1rem',
       gap: '0.5rem',
+      textAlign: 'center',
       '& > a': {
         color: 'var(--color-text-title-item)',
         fontSize: '1.15rem',
         textDecoration: 'none',
         fontWeight: '600'
       },
-      '& > *:last-child': {
-        textAlign: 'center',
-        color: 'var(--color-text-title-item)',
+      '& > *:nth-child(2)': {
+        color: 'var(--color-text-input)',
         width: '100%',
         fontWeight: '420',
         opacity: 0.9,
@@ -354,7 +368,6 @@ export default useCommonStyles;
 export {
   useHeaderStyles,
   useLandingPageStyles,
-  useAuthPageStyles,
   useHomePageStyles,
   useSprintPageStyles,
   usePitchItemStyles

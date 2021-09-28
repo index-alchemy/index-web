@@ -1,10 +1,13 @@
-const API = process.env.REACT_APP_API || 'https://acp-index.herokuapp.com/api/v1';
 
+const { REACT_APP_API_URL: API_URL, REACT_APP_LOUD: LOUD } = process.env;
+const API = API_URL || 'https://acp-index.herokuapp.com/api/v1';
+
+// all the GET requests
 const GET = async route => {
   return await fetch(`${API}${route}`, { credentials: 'include' })
     .then(res => {
-      console.log('response from', route, res);
-      return res.json();
+      if (LOUD) console.log('response from', route, res);
+      return res.ok ? res.json() : null;
     })
     .catch(err => console.error(err))
   ;
@@ -26,6 +29,7 @@ const fetchPitch = async id => await GET(`/pitches/${id}`);
 
 const fetchCommentsByPitch = async id => await GET(`/pitches/${id}/comments`);
 
+// all the POST requests
 const POST = async (route, body) => {
   return await fetch(`${API}${route}`, {
     method: 'POST',
@@ -44,6 +48,7 @@ const addPreference = async pref => await POST('/preferences', pref);
 
 const addSprint = async sprint => await POST('/sprints', sprint);
 
+// all the PUT requests
 const updatePreference = async pref => {
   return await fetch(`${API}/preferences/${pref.id}`, {
     method: 'PUT',
@@ -56,6 +61,18 @@ const updatePreference = async pref => {
   ;
 };
 
+// all the DELETE requests
+const deletePitch = async id => {
+  return await fetch(`${API}/pitches/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .catch(err => console.error(err))
+  ;
+};
+
+// exports
 export { 
   fetchSprints, 
   fetchSprint, 
@@ -68,5 +85,6 @@ export {
   addPitch,
   addPreference,
   addSprint,
-  updatePreference
+  updatePreference,
+  deletePitch
 };

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import Search from '../../search/Search';
+import Search from './Search';
 import { fetchPitches } from '../../services/indexAPI';
 import useCommonStyles, { useLandingPageStyles } from '../../styles/useStyles';
 import RecentPitches from './RecentPitches';
+import svg from './designers-choice.svg';
 
 const Landing = () => {
   const commonStyles = useCommonStyles();
@@ -23,7 +24,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className={commonStyles.page}>
+    <div className={commonStyles.page + ' ' + styles.easter}>
       <section>
         <h1 className={styles.heading}>
           Project pitches and voting, simplified.
@@ -32,10 +33,11 @@ const Landing = () => {
           Search past projects for inspiration, pitch project ideas, join teams, and brainstorm on implementation, all in one app.
         </span>
       </section>
+      <img src={svg} alt="Designers Choice" className={styles.designersChoice} />
 
       <hr className={styles.bulbBreak} />
 
-      <section>
+      <section className={styles.searchSection}>
         <Search setQuery={setQuery} query={query} />
         {!Boolean(query) && <RecentPitches 
           loading={loadingRecent}
