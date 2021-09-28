@@ -14,8 +14,8 @@ const Header = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!session) verify();
-  }, [session, verify]);
+    verify();
+  }, []);
 
   return (
     <header className={styles.header}>

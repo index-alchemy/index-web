@@ -1,9 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { verify as postVerify, logOut as postLogOut } from '../services/indexAuthAPI.js';
-import { getPrevUser, setPrevUser } from './localstorage.js';
 
-const { REACT_APP_LOUD: LOUD } = process.env;
+const LOUD = process.env.REACT_APP_LOUD === 'true';
 
 const SessionContext = createContext();
 
@@ -16,11 +15,11 @@ const SessionProvider = ({ children }) => {
 
   useEffect(() => {
     if (LOUD) console.log('Session change:', session);
-    if (session) setIsAdmin(!Boolean(session.cohort) || session.isAdmin);
+    if (session) setIsAdmin(!Boolean(session?.cohort) || session?.isAdmin);
   }, [session]);
 
   const logOut = async () => {
-    if (LOUD) console.log('logging out', session);
+    if (LOUD) console.log('Logging out.', session);
     setLoading(true);
     postLogOut()
       .then(() => setSession(null))
@@ -33,8 +32,8 @@ const SessionProvider = ({ children }) => {
     setLoading(true);
     postVerify()
       .then(user => {
-        setSession(user.id ? user : null);
-        if (!user.id) history.push('/');
+        if (user?.id) setSession(user);
+        else history.push('/');
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false))

@@ -3,8 +3,8 @@ import algoliasearch from 'algoliasearch';
 import PitchItem from '../sprint/PitchItem';
 
 const searchClient = algoliasearch(
-  process.env.REACT_APP_ALGOLIA_APP_ID || 'N82H923VC5', 
-  process.env.REACT_APP_ALGOLIA_SEARCH_API_KEY || 'cfb98a5ccb9ee9a4c9ebe8f6892ae575'
+  process.env.REACT_APP_ALGOLIA_APP_ID || 'XZLXQC8NHZ', 
+  process.env.REACT_APP_ALGOLIA_SEARCH_API_KEY || 'cc77f77706dbc256c8b1fb4b2c118ab8'
 );
 const searchIndex = searchClient.initIndex('pitches');
 
