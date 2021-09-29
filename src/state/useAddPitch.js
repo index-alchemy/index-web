@@ -26,7 +26,7 @@ const useAddPitch = () => {
 
     addPitch({ pitch, description, sprintId, userId })
       .then((pitch) => {
-        history.push(`/pitches/${pitch.id}`);
+        if (pitch.id) history.push(`/pitches/${pitch.id}`);
       })
     ;
   };
