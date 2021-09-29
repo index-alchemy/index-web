@@ -21,12 +21,12 @@ const useAddPitch = () => {
     }
   };
 
-  const handleSubmit = async (e, sprintId) => {
+  const handleSubmit = async (e, sprintId, userId) => {
     e.preventDefault();
 
-    addPitch({ pitch, description, sprintId })
+    addPitch({ pitch, description, sprintId, userId })
       .then((pitch) => {
-        history.push(`/sprints/${pitch.sprintId}`);
+        history.push(`/pitches/${pitch.id}`);
       })
     ;
   };
