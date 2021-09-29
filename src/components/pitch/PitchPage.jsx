@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSession } from '../../state/SessionProvider';
 import usePitch from '../../state/usePitch.js';
 import useCommonStyles from '../../styles/useStyles.js';
@@ -21,6 +22,10 @@ const PitchPage = () => {
             <span>{pitch.description}</span>
           </section>
 
+          <section>
+            <Link to={`/sprints/${pitch.sprintId}`}><button>back</button></Link>
+          </section>
+          
           {(isAdmin || session?.id === pitch.userId) && <section className={commonStyles.adminArea}>
             <button onClick={e => removePitch(pitch.id)}>Delete Pitch</button>
           </section>}
