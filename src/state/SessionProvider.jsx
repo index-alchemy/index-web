@@ -15,6 +15,7 @@ const SessionProvider = ({ children }) => {
 
   useEffect(() => {
     if (LOUD) console.log('Session change:', session);
+    // if (session) session.cohort = '2021-03'
     if (session) setIsAdmin(!Boolean(session?.cohort) || session?.isAdmin);
   }, [session]);
 
