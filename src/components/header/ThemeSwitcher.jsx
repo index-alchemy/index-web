@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  setTheme as setLSTheme,
+  getTheme as getLSTheme,
+} from '../../state/localstorage.js';
 
 const ThemeSwitcher = () => {
-  const [themeIndex, setThemeIndex] = useState(0);
+  const [themeIndex, setThemeIndex] = useState(getLSTheme());
 
   const themes = [
     {
@@ -138,16 +142,19 @@ const ThemeSwitcher = () => {
     },
   ];
 
-  const handleThemeSwitch = e => {
-    setThemeIndex((themeIndex + 1) % themes.length);
-    const theme = themes[(themeIndex + 1) % themes.length];
-
-    console.log(themeIndex, themes, theme);
+  useEffect(() => {
+    const theme = themes[themeIndex];
 
     const html = document.querySelector('html');
+
     for (let prop of Object.entries(theme.style)) {
       html.style.setProperty(...prop);
     }
+  }, [themeIndex]);
+
+  const handleThemeSwitch = e => {
+    setLSTheme((themeIndex + 1) % themes.length);
+    setThemeIndex((themeIndex + 1) % themes.length);
   };
 
   return <>
