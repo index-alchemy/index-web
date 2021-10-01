@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PitchItem from './PitchItem';
 import PitchForm from './PitchForm';
-import { useAuthActions, useSession } from '../../state/SessionProvider';
-import { useSprint } from '../../state/useSprint.js';
-import { relocateItemInArray } from '../../utils/utils.js';
-import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
 import Result from './Result';
+import { useSession } from '../../state/SessionProvider';
+import { useSprint } from '../../state/useSprint';
+import useCommonStyles, { useSprintPageStyles } from '../../styles/useStyles';
+import { relocateItemInArray } from '../../utils/utils.js';
 
 const SprintPage = () => {
   
@@ -17,13 +17,11 @@ const SprintPage = () => {
 
   const params = useParams();
   const { session, isAdmin } = useSession();
-  const { verify } = useAuthActions();
   const { loading, sprint, prefs, initializePrefs, updatePrefs, updateResult } = useSprint(params.id);
 
   useEffect(() => {
-    if (!session) verify();
-    else if (!Boolean(prefs.length) && Boolean(sprint)) initializePrefs(session.id);
-  }, [session, verify, initializePrefs, prefs, sprint]);
+    if (session && !Boolean(prefs.length) && Boolean(sprint)) initializePrefs(session.id);
+  }, [session, initializePrefs, prefs, sprint]);
 
   const handleReorder = e => {
     e.preventDefault();
@@ -61,18 +59,20 @@ const SprintPage = () => {
             </section>
           </>}
 
-          {isAdmin && <section className={commonStyles.adminArea}>
+          {isAdmin && <section className={commonStyles.adminArea + ' ' + styles.adminArea}>
             {sprint.preferences.length === 1
               ? <span>{sprint.preferences.length} student has voted</span>
               : <span>{sprint.preferences.length} students have voted</span>
             }
 
             <form onSubmit={handleMakeTeams}>
-              <input name="teams" type="number" min="2" max={sprint.preferences.length} defaultValue={4}/>
               <button
                 type="submit"
                 className={commonStyles.buttonPrimary}
-              >end pitches</button>
+                disabled={sprint?.preferences.length > 1}
+              >Make Teams</button>
+              <span>of size</span>
+              <input name="teams" type="number" min="2" max={sprint.preferences.length} defaultValue={4}/>
             </form>
           </section>}
 

@@ -7,15 +7,16 @@ Index is a collaborative project-brainstorming app. It emphasizes simplicity and
 
 ## Creators
 - Annaleigh Hickman 
-  - <a href="https://www.linkedin.com/in/annaleighhickman/">LinkedIn</a> | <a href="https://www.github.com/austin-summerlin/">GitHub</a> | 
+  - <a href="https://www.linkedin.com/in/annaleighhickman/">LinkedIn</a> | <a href="https://www.github.com/austin-summerlin/">GitHub</a>
 - Austin Summerlin
   - <a href="https://www.linkedin.com/in/austin-summerlin/">LinkedIn</a> | <a href="https://www.github.com/annaleighthomas/">GitHub</a>
 - Clem Hepburn
-  - <a href="https://www.linkedin.com/in/clemhepburn/">LinkedIn</a> | <a href="https://www.github.com/clemhepburn/">GitHub</a>
+  - <a href="https://www.linkedin.com/in/clemhepburn/">LinkedIn</a> | <a href="https://www.github.com/clemhepburn/">GitHub</a> | <a href="https://clem.today/">portfolio</a>
 - Culi Tif
-  - <a href="https://www.linkedin.com/in/tif-calin/">LinkedIn</a> | <a href="https://www.github.com/tif-calin/">GitHub</a>
+  - <a href="https://www.linkedin.com/in/tif-calin/">LinkedIn</a> | <a href="https://www.github.com/tif-calin/">GitHub</a> | <a href="https://work.culi.page/">portfolio</a>
 
 ## Tech Stack(Front-End)
 - React
 - Algolia
 - JSS
+- GitHub OAuth

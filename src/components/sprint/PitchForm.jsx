@@ -1,15 +1,18 @@
 import React from 'react';
 import useAddPitch from '../../state/useAddPitch.js';
 import useCommonStyles from '../../styles/useStyles.js';
+import { useSession } from '../../state/SessionProvider.jsx'
 
 const PitchForm = ({ sprintId }) => {
 
   const commonStyles = useCommonStyles();
 
+  const { session } = useSession();
+
   const { pitch, description, handleSubmit, handleChange } = useAddPitch();
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, sprintId)}>
+    <form onSubmit={(e) => handleSubmit(e, sprintId, session.id)}>
       <input
         required
         name='pitch'

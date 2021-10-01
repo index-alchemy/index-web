@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Search from '../../search/Search';
+import Search from './Search';
 import { fetchPitches } from '../../services/indexAPI';
 import useCommonStyles, { useLandingPageStyles } from '../../styles/useStyles';
 import RecentPitches from './RecentPitches';
@@ -37,7 +37,7 @@ const Landing = () => {
 
       <hr className={styles.bulbBreak} />
 
-      <section>
+      <section className={styles.searchSection}>
         <Search setQuery={setQuery} query={query} />
         {!Boolean(query) && <RecentPitches 
           loading={loadingRecent}

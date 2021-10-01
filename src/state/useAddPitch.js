@@ -1,32 +1,42 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { addPitch } from '../services/indexAPI.js';
+import { 
+  getPitchProposal as getLSPitchProposal,
+  setPitchProposal as setLSPitchProposal,
+  clearPitchProposal as clearLSPitchProposal
+} from './localstorage.js';
 
 const useAddPitch = () => {
 
-  const [pitch, setPitch] = useState('');
-  const [description, setDescription] = useState('');
+  const pitchProposal = getLSPitchProposal();
+
+  const [pitch, setPitch] = useState(pitchProposal.title || '');
+  const [description, setDescription] = useState(pitchProposal.description || '');
   const history = useHistory();
 
   const handleChange = ({ target }) => {
     switch (target.name) {
       case 'pitch':
         setPitch(target.value);
+        setLSPitchProposal(null, target.value);
         break;
       case 'description':
         setDescription(target.value);
-        break;
-      default:
+        setLSPitchProposal(target.value, null);
         break;
     }
   };
 
-  const handleSubmit = async (e, sprintId) => {
+  const handleSubmit = async (e, sprintId, userId) => {
     e.preventDefault();
 
-    addPitch({ pitch, description, sprintId })
+    addPitch({ pitch, description, sprintId, userId })
       .then((pitch) => {
-        history.push(`/sprints/${pitch.sprintId}`);
+        if (pitch.id) {
+          history.push(`/pitches/${pitch.id}`);
+          clearLSPitchProposal();
+        }
       })
     ;
   };

@@ -17,10 +17,28 @@ const PitchItem = ({ pitch, rank, showSpinner, handleReorder }) => {
       />}
       <div>
         <Link 
-          to={`/pitches/${pitch.id}`}
-        >{pitch.pitch}</Link>
+          to={`/pitches/${pitch.id || pitch.objectID}`}
+        >{pitch.pitch || pitch.title}</Link>
 
         <span>{pitch.description}</span>
+
+        {pitch.objectID && <>
+          {pitch.suggestedBy && <span>
+            Suggested by {pitch.suggestedBy} on {pitch.suggestedOn}
+          </span>}
+
+          {pitch.projectURL 
+            ? <>
+              <span>
+                Made by {pitch.team.join(', ')} of the {pitch.cohort} cohort.
+              </span>
+              <span>
+                Project URL: <a href={pitch.projectURL}>{pitch.projectURL}</a>
+              </span>
+            </>
+            : <span>Suggested for the {pitch.cohort} cohort</span>
+          }
+        </>}
       </div>
     </li>
   </>;

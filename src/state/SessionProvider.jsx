@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signUp as postSignUp, logIn as postLogIn, verify as postVerify, logOut as postLogOut } from '../services/indexAuthAPI.js';
-import { getPrevUser, setPrevUser } from './localstorage.js';
+import { verify as postVerify, logOut as postLogOut } from '../services/indexAuthAPI.js';
+
+const LOUD = process.env.REACT_APP_LOUD === 'true';
 
 const SessionContext = createContext();
 
@@ -13,53 +14,41 @@ const SessionProvider = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    console.log('Session change:', session);
-    if (session) setIsAdmin(!Boolean(session.cohort) || session.isAdmin);
+    if (LOUD) console.log('Session change:', session);
+    // if (session) session.cohort = '2021-03'
+    if (session) setIsAdmin(!Boolean(session?.cohort) || session?.isAdmin);
   }, [session]);
 
-  const signOn = async (action, data) => {
-    setLoading(true);
-    return await action(data)
-      .then(res => {
-        setSession(res.status >= 300 ? null : res);
-        if (!(res.status >= 300)) history.push('/home');
-        setPrevUser(res);
-      })
-      .finally(() => setLoading(false))
-      .catch(err => console.error(err))
-    ;
-  };
-
-  const signUp = async signup => signOn(postSignUp, signup);
-
-  const logIn = async login => signOn(postLogIn, login);
-
   const logOut = async () => {
-    console.log('logging out', session);
+    if (LOUD) console.log('Logging out.', session);
+    setLoading(true);
     postLogOut()
       .then(() => setSession(null))
       .catch(err => console.error(err))
+      .finally(() => setLoading(false))
     ;
   };
 
   const verify = async () => {
+    setLoading(true);
     postVerify()
-      .then(ok => {
-        setSession(ok ? getPrevUser() : null);
-        if (!ok) history.push('/');
+      .then(user => {
+        if (user?.id) setSession(user);
+        else history.push('/');
       })
       .catch(err => console.error(err))
+      .finally(() => setLoading(false))
     ; 
   };
 
-  return <SessionContext.Provider value={{ loading, session, isAdmin, signUp, logIn, logOut, verify }}>
+  return <SessionContext.Provider value={{ loading, session, isAdmin, logOut, verify }}>
     {children}
   </SessionContext.Provider>;
 };
 
 const useAuthActions = () => {
-  const { signUp, logIn, logOut, verify } = useContext(SessionContext);
-  return { signUp, logIn, logOut, verify };
+  const { logOut, verify } = useContext(SessionContext);
+  return { logOut, verify };
 };
 
 const useSession = () => {

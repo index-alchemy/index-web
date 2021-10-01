@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import AuthButton from './AuthButton';
 import { useAuthActions, useSession } from '../../state/SessionProvider';
 import { useHeaderStyles } from '../../styles/useStyles';
 import ThemeSwitcher from './ThemeSwitcher';
 
-export default function Header() {
+const Header = () => {
   const styles = useHeaderStyles();
 
   const { loading, session } = useSession();
-  const { logOut } = useAuthActions();
+  const { logOut, verify } = useAuthActions();
   const history = useHistory();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    verify();
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -31,3 +35,5 @@ export default function Header() {
     </header>
   );
 };
+
+export default Header;
