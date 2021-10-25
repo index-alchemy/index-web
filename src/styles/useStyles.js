@@ -74,6 +74,7 @@ const useHeaderStyles = createUseStyles({
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
+      minWidth: 'calc(100% + 1rem)',
       '& svg': {
         maxHeight: '1rem'
       }
